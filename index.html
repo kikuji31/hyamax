@@ -208,6 +208,27 @@ hr.rule{border:none;border-top:1px solid var(--line);margin:0;}
 .btn-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
 .btn-block{width:100%;}
 
+.nav-item{position:relative;display:flex;align-items:center;}
+.nav-sub{
+  position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(6px);
+  background:#FFFFFF;border-radius:14px;padding:8px;min-width:150px;
+  display:flex;flex-direction:column;gap:2px;
+  box-shadow:var(--shadow-sm);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .2s ease, transform .2s ease, visibility .2s ease;
+  z-index:60;
+}
+.nav-item.has-sub:hover .nav-sub,
+.nav-item.has-sub:focus-within .nav-sub{
+  opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0);
+}
+.nav-sub a{
+  color:var(--ink-soft);padding:9px 14px;border-radius:8px;font-size:.82rem;
+  white-space:nowrap;letter-spacing:.04em;
+}
+.nav-sub a:hover{background:var(--paper-deep);color:var(--ink);}
+.nav-sub a::after{display:none;}
+
 .nav-cta{display:flex;align-items:center;gap:18px;}
 .nav-toggle{
   display:none;background:none;border:none;cursor:pointer;padding:6px;
@@ -229,6 +250,13 @@ hr.rule{border:none;border-top:1px solid var(--line);margin:0;}
   .nav-links a{width:100%;padding:14px 0;border-bottom:1px solid var(--line);color:var(--ink-soft);}
   .nav-links a:hover{color:var(--ink);}
   .nav-links a::after{background:var(--accent);}
+  .nav-item{flex-direction:column;align-items:flex-start;width:100%;border-bottom:1px solid var(--line);}
+  .nav-item > a{border-bottom:none;}
+  .nav-sub{
+    position:static;transform:none;opacity:1;visibility:visible;pointer-events:auto;
+    box-shadow:none;padding:0 0 4px 16px;min-width:0;width:100%;
+  }
+  .nav-sub a{width:100%;padding:10px 0;border-bottom:none;font-size:.85rem;}
   .nav-cta .btn-primary{display:none;}
   .nav-links .btn-primary{display:inline-flex;margin-top:14px;background:var(--ink);color:var(--paper);}
   .nav-toggle{display:block;}
@@ -817,10 +845,19 @@ footer{color:var(--paper);padding:56px 0 30px;}
       <span class="brand-mark en">HYAMAX<sup>®</sup></span>
     </a>
     <nav class="nav-links" id="navLinks">
-      <a href="#whatis">ผลิตภัณฑ์</a>
-      <a href="#zones">พื้นที่ฉีด</a>
-      <a href="#about">เกี่ยวกับเรา</a>
-      <a href="#contact">ติดต่อ</a>
+      <a href="#about">ABOUT</a>
+      <a href="#login">Login</a>
+      <div class="nav-item has-sub">
+        <a href="#product-line">Product</a>
+        <div class="nav-sub">
+          <a href="#product-line">FINE</a>
+          <a href="#product-line">LIPS</a>
+          <a href="#product-line">DEEP</a>
+          <a href="#product-line">EXTRA DEEP</a>
+        </div>
+      </div>
+      <a href="#clinics">Find a Clinic</a>
+      <a href="#event">EVENT</a>
       <a class="btn btn-primary" href="https://www.cosmedrewards.com/" target="_blank" rel="noopener">เช็คสินค้าแท้</a>
     </nav>
     <div class="nav-cta">
