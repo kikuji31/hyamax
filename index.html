@@ -453,11 +453,11 @@ hr.rule{border:none;border-top:1px solid var(--line);margin:0;}
 .cl-legend-text b{font-weight:700;color:#222;font-size:clamp(.42rem,.76vw,.66rem);line-height:1.25;}
 .cl-legend-text small{margin-top:2px;font-weight:500;color:#555;font-size:clamp(.36rem,.64vw,.56rem);line-height:1.3;}
 .cl-diagrams{display:flex;gap:clamp(6px,1.2vw,16px);margin-top:clamp(6px,1.2vw,14px);flex:1;}
-.cl-diagram{flex:1;background:#FFFFFF;border-radius:10px;padding:clamp(6px,1vw,12px);box-shadow:var(--shadow-sm);display:flex;flex-direction:column;}
+.cl-diagram{flex:1;padding:clamp(6px,1vw,12px);display:flex;flex-direction:column;}
 .cl-diagram-label{font-size:clamp(.55rem,.95vw,.85rem);font-weight:800;text-align:center;color:#141414;letter-spacing:.02em;}
 .cl-diagram-art{
-  flex:1;margin-top:6px;border-radius:6px;min-height:0;
-  background:repeating-linear-gradient(135deg, rgba(35,48,91,.08) 0 2px, transparent 2px 8px), var(--paper-deep);
+  flex:1;width:100%;margin-top:6px;border-radius:6px;min-height:0;
+  object-fit:contain;display:block;
 }
 .cl-diagram p{margin-top:6px;font-size:clamp(.5rem,.85vw,.76rem);color:#555;text-align:center;line-height:1.35;}
 .cl-callout{
@@ -469,8 +469,7 @@ hr.rule{border:none;border-top:1px solid var(--line);margin:0;}
 .cl-callout-rule{width:34%;height:3px;background:#C0392B;margin:clamp(6px,1.2vw,14px) 0;}
 .cl-features{left:73%;top:47%;width:24.5%;height:44%;display:flex;flex-direction:column;gap:clamp(4px,1vw,10px);}
 .cl-feature{
-  flex:1;background:rgba(255,255,255,.55);border-radius:10px;
-  padding:clamp(5px,1vw,12px) clamp(8px,1.3vw,14px);
+  flex:1;padding:clamp(5px,1vw,12px) clamp(8px,1.3vw,14px);
   display:flex;align-items:center;gap:clamp(6px,1vw,12px);
 }
 .cl-feature svg{width:clamp(18px,2.8vw,32px);height:clamp(18px,2.8vw,32px);color:#23305B;flex:none;}
@@ -495,6 +494,68 @@ hr.rule{border:none;border-top:1px solid var(--line);margin:0;}
   .cl-callout-rule{margin-left:auto;margin-right:auto;}
   .cl-diagrams{flex-direction:column;}
   .cl-strip{border-top:none;padding-top:0;flex-direction:column;text-align:center;gap:10px;}
+}
+
+/* ---------- advantages ---------- */
+.advantages{position:relative;aspect-ratio:2903/1632;display:flex;align-items:flex-start;padding-top:clamp(56px,9vw,110px);box-sizing:border-box;}
+.advantages-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1;}
+.advantages-grid{
+  width:100%;
+  display:grid;grid-template-columns:.7fr 1.6fr;gap:clamp(30px,5vw,64px);align-items:start;
+}
+.advantages-copy h2{
+  font-family:var(--display);font-weight:800;letter-spacing:-.02em;line-height:1.05;
+  font-size:clamp(2.8rem,5.6vw,4.4rem);color:#141414;
+}
+.advantages-brand{color:#C0392B;}
+.advantages-sub{
+  margin-top:12px;font-weight:700;color:#1c1c1c;
+  font-size:clamp(1.3rem,2.4vw,1.75rem);
+  border-bottom:3px solid #C0392B;padding-bottom:clamp(10px,1.6vw,16px);display:inline-block;
+}
+.advantages-body{margin-top:clamp(18px,2.6vw,28px);color:#3A3A3A;font-size:clamp(.9rem,1.3vw,1.05rem);line-height:1.7;max-width:52ch;}
+.advantages-card{margin:0;position:relative;left:100px;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);}
+.advantages-card img{width:100%;height:auto;display:block;}
+@media (max-width:820px){
+  .advantages{aspect-ratio:auto;padding:clamp(48px,9vw,72px) 0;}
+  .advantages-grid{grid-template-columns:1fr;text-align:center;}
+  .advantages-body{margin-left:auto;margin-right:auto;}
+  .advantages-card{left:0;}
+}
+
+/* ---------- working principle ---------- */
+.wp{position:relative;aspect-ratio:2903/1634;display:flex;align-items:center;}
+.wp-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1;}
+.wp-copy{width:100%;max-width:580px;margin-left:auto;}
+.wp-eyebrow{
+  display:block;font-family:var(--sans);font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  font-size:clamp(1.1rem,1.9vw,1.5rem);color:var(--accent);
+}
+.wp-title{
+  margin-top:10px;font-family:var(--display);font-weight:700;letter-spacing:-.01em;line-height:1.2;
+  font-size:clamp(1.9rem,3.6vw,2.7rem);color:#141414;
+}
+.wp-title span{color:var(--accent);font-weight:800;}
+.wp-steps{list-style:none;margin:clamp(24px,3.6vw,36px) 0 0;padding:0;counter-reset:none;}
+.wp-steps li{
+  display:grid;grid-template-columns:auto 1fr;gap:clamp(14px,2vw,20px);
+  padding:clamp(12px,1.8vw,18px) 0;border-top:1px solid rgba(20,20,20,.1);
+}
+.wp-steps li:last-child{border-bottom:1px solid rgba(20,20,20,.1);}
+.wp-num{
+  font-family:var(--display);font-weight:800;color:var(--accent);
+  font-size:clamp(1.6rem,2.6vw,2.1rem);line-height:1;
+}
+.wp-steps h3{
+  font-family:var(--sans);font-weight:700;color:#141414;
+  font-size:clamp(.92rem,1.4vw,1.08rem);
+}
+.wp-steps p{margin-top:4px;color:#3A3A3A;font-size:clamp(.78rem,1.1vw,.9rem);line-height:1.55;}
+@media (max-width:900px){
+  .wp{aspect-ratio:auto;padding:clamp(48px,9vw,72px) 0;}
+  .wp-bg{object-position:top;}
+  .wp-copy{max-width:none;text-align:center;}
+  .wp-steps li{grid-template-columns:1fr;text-align:center;}
 }
 
 /* ---------- section headers ---------- */
@@ -941,7 +1002,7 @@ footer{color:var(--paper);padding:56px 0 30px;}
   </div>
 </section>
 
-<section class="band" id="crosslink">
+<section id="crosslink">
   <div class="cl-frame reveal">
     <img class="cl-bg" src="crosslink-bg.jpg" alt="" aria-hidden="true">
 
@@ -975,12 +1036,12 @@ footer{color:var(--paper);padding:56px 0 30px;}
         <div class="cl-diagrams">
           <div class="cl-diagram">
             <div class="cl-diagram-label">Other HA Fillers</div>
-            <div class="cl-diagram-art"></div>
+            <img class="cl-diagram-art" src="cl-diagram-other.png" alt="Other HA fillers - invalid and winding crosslinking pattern">
             <p>สายพันธะ HA แบบไม่มีประสิทธิภาพ (เชื่อมต่อแบบสุ่ม)</p>
           </div>
           <div class="cl-diagram">
             <div class="cl-diagram-label">Hyamax&reg; Cross-Linking</div>
-            <div class="cl-diagram-art"></div>
+            <img class="cl-diagram-art" src="cl-diagram-hyamax.png" alt="Hyamax cross-linking technology - effective crosslinking pattern">
             <p>เทคโนโลยี Cross-linking ของ HYAMAX&reg; ที่มีประสิทธิภาพสูง</p>
           </div>
         </div>
@@ -1014,6 +1075,60 @@ footer{color:var(--paper);padding:56px 0 30px;}
         <span>High Safety Profile</span>
       </div>
     </div>
+</section>
+
+<section class="advantages">
+  <img class="advantages-bg" src="advantages-bg.jpg" alt="" aria-hidden="true">
+  <div class="wrap advantages-grid">
+    <div class="advantages-copy reveal">
+      <h2>Advantages of<br><span class="advantages-brand">Hyamax&reg;</span></h2>
+      <p class="advantages-sub">Hyaluronic Acid Dermal Fillers</p>
+      <p class="advantages-body">จากการวิเคราะห์เชิงทดลองพบว่า ฟิลเลอร์ Hyamax&reg; มีค่าความยืดหยุ่นของเจลสูงกว่า หรือ G&rsquo; Value ที่สูงกว่า จึงช่วยรองรับชั้นเนื้อเยื่อได้ดี ต้านแรงตึงของเนื้อเยื่อ และช่วยสร้างรวมถึงคงรูปทรงในลักษณะสามมิติได้อย่างมีประสิทธิภาพ</p>
+    </div>
+    <figure class="advantages-card reveal">
+      <img src="advantages-3d-card.jpg" alt="3D three-dimensional hyaluronic acid matrix - strong structure, superior support">
+    </figure>
+  </div>
+</section>
+
+<section class="wp">
+  <img class="wp-bg" src="layer-bg.jpg" alt="" aria-hidden="true">
+  <div class="wrap">
+    <div class="wp-copy reveal">
+      <span class="wp-eyebrow">Working Principle</span>
+      <h2 class="wp-title">หลักการทำงานของ <span>HYAMAX&reg;</span></h2>
+      <ol class="wp-steps">
+        <li>
+          <span class="wp-num">1</span>
+          <div>
+            <h3>สภาพผิวที่เสื่อมสภาพ</h3>
+            <p>ผิวหนังสูญเสียความแข็งแรง ความชุ่มชื้น และความยืดหยุ่น ทำให้เกิดริ้วรอย ดูไม่สดใส</p>
+          </div>
+        </li>
+        <li>
+          <span class="wp-num">2</span>
+          <div>
+            <h3>เติม HYAMAX&reg; เข้าสู่ชั้นผิว</h3>
+            <p>เพื่อฟื้นฟูผิวหนังที่เสื่อมสภาพ</p>
+          </div>
+        </li>
+        <li>
+          <span class="wp-num">3</span>
+          <div>
+            <h3>Cross-Links HA</h3>
+            <p>Hyamax เข้าไปเติมเต็มในชั้นผิว ด้วยกระบวนการ Cross-linked HA ที่มีคุณสมบัติในการกักเก็บน้ำ อุ้มน้ำไว้ให้ผิวเป็นอย่างดี</p>
+          </div>
+        </li>
+        <li>
+          <span class="wp-num">4</span>
+          <div>
+            <h3>ผิวหนังมีความชุ่มชื้น อิ่มน้ำ</h3>
+            <p>ดูเรียบเนียน อิ่มฟู และมีความยืดหยุ่นเป็นธรรมชาติ</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
 </section>
 
 <section class="band band-deep" id="contact">
