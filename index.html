@@ -443,8 +443,121 @@ hr.rule{border:none;border-top:1px solid var(--line);margin:0;}
   text-align:center;
 }
 .product-hero-copy{max-width:min(820px,86vw);margin:0 auto;color:#FFFFFF;}
-.product-hero-visual{max-width:1180px;margin:clamp(36px,5vw,56px) auto 0;}
+.product-hero-visual{position:relative;max-width:1180px;margin:clamp(36px,5vw,56px) auto 0;}
 .product-hero-visual img{width:100%;height:auto;display:block;}
+
+/* ---------- fine hero ---------- */
+.fine-hero{
+  position:relative;overflow:hidden;
+  padding:clamp(56px,8vw,88px) 0;
+  background:linear-gradient(150deg, #6E9FD6 0%, #9CC0E7 40%, #D6E6F5 78%, var(--paper) 100%);
+}
+.fine-hero-grid{
+  position:relative;z-index:2;max-width:1180px;margin:0 auto;
+  padding:0 clamp(20px,5vw,56px);
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,34%);gap:clamp(20px,3vw,40px);
+  align-items:flex-start;
+}
+.fine-hero-copy{max-width:520px;}
+.fine-brand{font-family:var(--display);font-weight:800;font-size:clamp(1.3rem,2vw,1.6rem);color:var(--accent);letter-spacing:-.01em;}
+.fine-title{
+  font-family:var(--display);font-weight:800;letter-spacing:-.02em;line-height:.92;
+  font-size:clamp(4.2rem,9vw,7.2rem);
+  margin-top:4px;
+  background:linear-gradient(180deg,#FFFFFF,#DCEAF7);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.fine-subtitle{
+  margin-top:16px;font-family:var(--sans);font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  font-size:clamp(.95rem,1.4vw,1.2rem);color:var(--accent);
+}
+.fine-rule{width:56px;height:3px;background:var(--accent);margin-top:14px;border-radius:2px;}
+
+.fine-tagline{margin-top:clamp(24px,4vw,34px);}
+.fine-tagline .en-line{display:block;font-weight:700;color:var(--sku-plusfine);font-size:clamp(1.15rem,1.9vw,1.4rem);}
+.fine-tagline .sub-line{display:block;margin-top:4px;color:var(--ink);font-size:clamp(1.02rem,1.6vw,1.18rem);font-weight:500;}
+
+.fine-quote{
+  position:relative;margin-top:clamp(26px,4vw,38px);padding-left:20px;
+  border-left:3px solid rgba(255,255,255,.5);
+}
+.fine-quote-mark{font-family:var(--display);font-size:1.8rem;color:#C0392B;line-height:.5;display:block;}
+.fine-quote p{color:#FFFFFF;font-weight:700;font-size:clamp(.92rem,1.35vw,1.05rem);line-height:1.55;}
+.fine-quote .th{margin-top:10px;font-weight:500;color:rgba(255,255,255,.85);font-size:clamp(.82rem,1.15vw,.92rem);line-height:1.6;}
+
+.fine-features{list-style:none;margin:clamp(26px,4vw,36px) 0 0;padding:0;display:flex;flex-direction:column;gap:clamp(16px,2.4vw,22px);}
+.fine-features li{display:flex;align-items:center;gap:14px;}
+.fine-features .ico{
+  flex:none;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.55);
+  display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.7);
+}
+.fine-features svg{width:22px;height:22px;color:var(--accent);}
+.fine-features h3{font-family:var(--sans);font-weight:800;color:var(--accent);font-size:.98rem;line-height:1.3;}
+.fine-features p{margin-top:2px;color:rgba(22,22,22,.62);font-size:.86rem;}
+
+.fine-hero-visual{position:relative;align-self:flex-end;}
+.fine-hero-visual img{width:100%;height:auto;display:block;filter:var(--grade-photo);}
+
+@media (max-width:900px){
+  .fine-hero-grid{grid-template-columns:1fr;}
+  .fine-hero-copy{max-width:none;text-align:center;}
+  .fine-rule{margin-left:auto;margin-right:auto;}
+  .fine-quote{padding-left:0;border-left:none;text-align:left;}
+  .fine-hero-visual{max-width:340px;margin:32px auto 0;}
+}
+
+/* ---------- fine product detail ---------- */
+/* HYAMAX-fine.png already contains a blue/white striped swatch panel built into
+   the photo (right side of the image) — the text below is overlaid to align
+   with that panel's rows instead of drawing a separate table graphic. */
+.fine-detail{position:relative;aspect-ratio:2732/1538;}
+.fine-detail-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;}
+
+.fine-detail-heading{
+  position:absolute;left:46.3%;top:14%;width:44.5%;z-index:2;
+  text-align:center;
+}
+.fine-detail-heading h2{
+  font-family:var(--display);font-weight:800;letter-spacing:-.01em;
+  font-size:clamp(1.6rem,4.6vw,3.7rem);color:var(--ink);line-height:1.05;
+}
+.fine-detail-heading h2 span{color:var(--sku-plusfine);}
+.fine-pill{
+  display:inline-block;margin-top:.5em;padding:.5em 1.5em;border-radius:999px;
+  background:var(--sku-plusfine-soft);color:var(--sku-plusfine);font-family:var(--sans);
+  font-weight:700;font-size:clamp(.85rem,2.1vw,1.5rem);letter-spacing:.02em;
+}
+
+.fine-spec-overlay{
+  position:absolute;left:46.3%;top:30.2%;width:44.5%;height:52.7%;z-index:2;
+  display:flex;flex-direction:column;font-family:var(--sans);
+}
+.fine-spec-row{display:grid;grid-template-columns:49.8% 50.2%;align-items:center;flex:1 1 0;min-height:0;}
+.fine-spec-row.header{flex:0 0 16.5%;}
+.fine-spec-label,.fine-spec-value{
+  padding:0 6% 0 6%;font-size:clamp(.42rem,1.05vw,.86rem);line-height:1.15;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.fine-spec-label{color:#FFFFFF;font-weight:700;}
+.fine-spec-value{color:var(--sku-plusfine);font-weight:800;font-family:var(--display);text-align:center;padding-left:2%;padding-right:2%;}
+.fine-spec-row.header .fine-spec-label{font-weight:800;}
+.fine-spec-row.header .fine-spec-value{font-size:clamp(.36rem,.85vw,.7rem);}
+
+@media (max-width:640px){
+  .fine-detail-heading{top:3%;}
+  .fine-pill{margin-top:.3em;}
+}
+
+.product-hero-hotspot{
+  position:absolute;top:0;height:100%;
+  border-radius:12px;transition:background .2s ease;
+}
+.product-hero-hotspot:hover{background:rgba(255,255,255,.16);}
+.product-hero-hotspot:hover::after{
+  content:attr(data-label);position:absolute;left:50%;bottom:6%;transform:translateX(-50%);
+  background:var(--ink);color:#FFFFFF;font-family:var(--sans);font-weight:700;
+  font-size:clamp(.6rem,1vw,.8rem);padding:6px 14px;border-radius:999px;white-space:nowrap;
+}
 
 /* ---------- crosslinking technology ---------- */
 .cl-frame{
@@ -850,7 +963,7 @@ footer{color:var(--paper);padding:56px 0 30px;}
       <div class="nav-item has-sub">
         <a href="#product-line">Product</a>
         <div class="nav-sub">
-          <a href="#product-line">FINE</a>
+          <a href="#fine">FINE</a>
           <a href="#product-line">LIPS</a>
           <a href="#product-line">DEEP</a>
           <a href="#product-line">EXTRA DEEP</a>
@@ -1047,6 +1160,10 @@ footer{color:var(--paper);padding:56px 0 30px;}
   </div>
   <div class="product-hero-visual reveal">
     <img src="product-lineup.png" alt="Hyamax product line-up: Fine, Lips, Deep, Extra Deep">
+    <a class="product-hero-hotspot" href="#fine" data-label="FINE" style="left:0;width:29.7%;" aria-label="HYAMAX Plus FINE"></a>
+    <a class="product-hero-hotspot" href="#product-line" data-label="LIPS" style="left:29.7%;width:21.85%;" aria-label="HYAMAX Plus LIPS"></a>
+    <a class="product-hero-hotspot" href="#product-line" data-label="DEEP" style="left:51.55%;width:21.25%;" aria-label="HYAMAX Plus DEEP"></a>
+    <a class="product-hero-hotspot" href="#product-line" data-label="EXTRA DEEP" style="left:72.8%;width:27.2%;" aria-label="HYAMAX Plus EXTRA DEEP"></a>
   </div>
 </section>
 
@@ -1176,6 +1293,79 @@ footer{color:var(--paper);padding:56px 0 30px;}
         </li>
       </ol>
     </div>
+  </div>
+</section>
+
+<section class="fine-hero" id="fine">
+  <div class="fine-hero-grid">
+    <div class="fine-hero-copy reveal">
+      <span class="fine-brand">HYAMAX&reg;</span>
+      <h2 class="fine-title en">FINE</h2>
+      <span class="fine-subtitle">Soft &amp; Smoothing</span>
+      <div class="fine-rule"></div>
+
+      <div class="fine-tagline">
+        <span class="en-line">เติมเต็มทุกมิติ</span>
+        <span class="sub-line">เป็นตัวเองในแบบที่ดีที่สุด</span>
+      </div>
+
+      <blockquote class="fine-quote">
+        <span class="fine-quote-mark">&ldquo;</span>
+        <p>For fine lines and superficial wrinkles, designed to provide a soft, smooth, and natural-looking result.</p>
+        <p class="th">เหมาะสำหรับริ้วรอยตื้นและร่องเล็ก ๆ ช่วยให้ผิวดูนุ่มนวล เรียบเนียน และเป็นธรรมชาติ</p>
+      </blockquote>
+
+      <ul class="fine-features">
+        <li>
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0"/><path d="M3 13c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0"/><path d="M3 18c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0"/></svg></span>
+          <div>
+            <h3 class="en">Fine lines and superficial wrinkles</h3>
+            <p>เส้นริ้วรอยตื้น</p>
+          </div>
+        </li>
+        <li>
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z"/><circle cx="12" cy="12" r="2.6"/></svg></span>
+          <div>
+            <h3 class="en">Periorbital area</h3>
+            <p>ใต้ตาและรอบดวงตา</p>
+          </div>
+        </li>
+        <li>
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3s6 7.2 6 11.2a6 6 0 0 1-12 0C6 10.2 12 3 12 3Z"/></svg></span>
+          <div>
+            <h3 class="en">Skin hydration and refinement</h3>
+            <p>เติมความชุ่มชื้น ผิวเรียบเนียนอย่างเป็นธรรมชาติ</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="fine-hero-visual reveal">
+      <img src="HYAMAX-fine-model.png" alt="HYAMAX Fine model holding product box">
+    </div>
+  </div>
+</section>
+
+<section class="fine-detail reveal">
+  <img class="fine-detail-bg" src="HYAMAX-fine.png" alt="HYAMAX Fine product box, gel texture and features panel">
+
+  <div class="fine-detail-heading">
+    <h2>Hyamax&reg; <span>Plus FINE</span></h2>
+    <span class="fine-pill">Soft &amp; Smoothing</span>
+  </div>
+
+  <div class="fine-spec-overlay">
+    <div class="fine-spec-row header">
+      <span class="fine-spec-label">Features</span>
+      <span class="fine-spec-value">HYAMAX&reg; PLUS FINE</span>
+    </div>
+    <div class="fine-spec-row"><span class="fine-spec-label">HA Concentration (mg/mL)</span><span class="fine-spec-value">20</span></div>
+    <div class="fine-spec-row"><span class="fine-spec-label">Storage modulus G&prime; (Pa)</span><span class="fine-spec-value">510</span></div>
+    <div class="fine-spec-row"><span class="fine-spec-label">Complex viscosity &eta;* (cP)</span><span class="fine-spec-value">92,817</span></div>
+    <div class="fine-spec-row"><span class="fine-spec-label">tan (&delta;)</span><span class="fine-spec-value">0.196</span></div>
+    <div class="fine-spec-row"><span class="fine-spec-label">Particle size (D50, &mu;m)</span><span class="fine-spec-value">450</span></div>
+    <div class="fine-spec-row"><span class="fine-spec-label">MoD (mol%)</span><span class="fine-spec-value">6.0</span></div>
+    <div class="fine-spec-row"><span class="fine-spec-label">Injection force (Avg, N)</span><span class="fine-spec-value">10</span></div>
   </div>
 </section>
 
