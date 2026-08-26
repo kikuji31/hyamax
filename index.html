@@ -452,6 +452,11 @@ hr.rule{border:none;border-top:1px solid var(--line);margin:0;}
   padding:clamp(56px,8vw,88px) 0 0;
   background:linear-gradient(150deg, #6E9FD6 0%, #9CC0E7 40%, #D6E6F5 78%, var(--paper) 100%);
 }
+.fine-hero-glow{
+  position:absolute;left:50%;bottom:0;transform:translateX(-50%);
+  width:42%;height:20%;z-index:3;pointer-events:none;
+  background:radial-gradient(ellipse at bottom, rgba(121,246,255,.55) 0%, rgba(121,246,255,0) 72%);
+}
 .fine-hero-grid{
   position:relative;z-index:2;max-width:1180px;margin:0 auto;
   padding:0 clamp(20px,5vw,56px);
@@ -459,12 +464,12 @@ hr.rule{border:none;border-top:1px solid var(--line);margin:0;}
   align-items:flex-start;
 }
 .fine-hero-copy{max-width:520px;padding-bottom:clamp(56px,8vw,88px);}
-.fine-brand{font-family:var(--display);font-weight:800;font-size:clamp(1.3rem,2vw,1.6rem);color:var(--accent);letter-spacing:-.01em;}
+.fine-brand{font-family:var(--display);font-weight:800;font-size:clamp(2.2rem,3.6vw,3rem);color:var(--accent);letter-spacing:-.01em;}
 .fine-title{
   font-family:var(--display);font-weight:800;letter-spacing:-.02em;line-height:.92;
   font-size:clamp(4.2rem,9vw,7.2rem);
   margin-top:4px;
-  background:linear-gradient(180deg,#FFFFFF,#DCEAF7);
+  background:linear-gradient(180deg,#B4CDEF,#FFFFFF);
   -webkit-background-clip:text;background-clip:text;color:transparent;
 }
 .fine-subtitle{
@@ -521,7 +526,7 @@ hr.rule{border:none;border-top:1px solid var(--line);margin:0;}
   font-family:var(--display);font-weight:800;letter-spacing:-.01em;
   font-size:clamp(1.6rem,4.6vw,3.7rem);color:var(--ink);line-height:1.05;
 }
-.fine-detail-heading h2 span{color:var(--sku-plusfine);}
+.fine-detail-heading h2 span{color:#0293FE;}
 .fine-pill{
   display:inline-block;margin-top:.5em;padding:.5em 1.5em;border-radius:999px;
   background:var(--sku-plusfine-soft);color:var(--sku-plusfine);font-family:var(--sans);
@@ -561,12 +566,12 @@ hr.rule{border:none;border-top:1px solid var(--line);margin:0;}
   align-items:flex-start;
 }
 .lip-hero-copy{max-width:520px;}
-.lip-brand{font-family:var(--display);font-weight:800;font-size:clamp(1.3rem,2vw,1.6rem);color:var(--accent);letter-spacing:-.01em;}
+.lip-brand{font-family:var(--display);font-weight:800;font-size:clamp(2.2rem,3.6vw,3rem);color:#FFFFFF;letter-spacing:-.01em;}
 .lip-title{
   font-family:var(--display);font-weight:800;letter-spacing:-.02em;line-height:.92;
   font-size:clamp(4.2rem,9vw,7.2rem);
   margin-top:4px;
-  background:linear-gradient(180deg,#FFFFFF,#F7DCE5);
+  background:linear-gradient(90deg,#B7377D 0%,#B7377D 78%,#D6B5B5 100%);
   -webkit-background-clip:text;background-clip:text;color:transparent;
 }
 .lip-subtitle{
@@ -645,6 +650,203 @@ hr.rule{border:none;border-top:1px solid var(--line);margin:0;}
 @media (max-width:640px){
   .lip-detail-heading{top:3%;}
   .lip-pill{margin-top:.3em;}
+}
+
+/* ---------- deep hero (mirrors fine hero, green palette) ---------- */
+.deep-hero{
+  position:relative;overflow:hidden;
+  padding:clamp(56px,8vw,88px) 0 0;
+  background:linear-gradient(150deg, #5C9E7C 0%, #8FC0A6 40%, #D6EBDF 78%, var(--paper) 100%);
+}
+.deep-hero-grid{
+  position:relative;z-index:2;max-width:1180px;margin:0 auto;
+  padding:0 clamp(20px,5vw,56px);
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(420px,66%);gap:clamp(20px,3vw,40px);
+  align-items:flex-start;
+}
+.deep-hero-copy{max-width:520px;padding-bottom:clamp(56px,8vw,88px);}
+.deep-brand{font-family:var(--display);font-weight:800;font-size:clamp(2.2rem,3.6vw,3rem);color:#FFFFFF;letter-spacing:-.01em;}
+.deep-title{
+  font-family:var(--display);font-weight:800;letter-spacing:-.02em;line-height:.92;
+  font-size:clamp(4.2rem,9vw,7.2rem);
+  margin-top:4px;
+  color:var(--sku-plusdeep);
+}
+.deep-subtitle{
+  margin-top:16px;font-family:var(--sans);font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  font-size:clamp(.95rem,1.4vw,1.2rem);color:var(--accent);
+}
+.deep-rule{width:56px;height:3px;background:var(--accent);margin-top:14px;border-radius:2px;}
+
+.deep-tagline{margin-top:clamp(24px,4vw,34px);}
+.deep-tagline .en-line{display:block;font-weight:700;color:var(--sku-plusdeep);font-size:clamp(1.15rem,1.9vw,1.4rem);}
+.deep-tagline .sub-line{display:block;margin-top:4px;color:var(--ink);font-size:clamp(1.02rem,1.6vw,1.18rem);font-weight:500;}
+
+.deep-quote{
+  position:relative;margin-top:clamp(26px,4vw,38px);padding-left:20px;
+  border-left:3px solid rgba(255,255,255,.5);
+}
+.deep-quote-mark{font-family:var(--display);font-size:1.8rem;color:#C0392B;line-height:.5;display:block;}
+.deep-quote p{color:#FFFFFF;font-weight:700;font-size:clamp(.92rem,1.35vw,1.05rem);line-height:1.55;}
+.deep-quote .th{margin-top:10px;font-weight:500;color:rgba(255,255,255,.85);font-size:clamp(.82rem,1.15vw,.92rem);line-height:1.6;}
+
+.deep-features{list-style:none;margin:clamp(26px,4vw,36px) 0 0;padding:0;display:flex;flex-direction:column;gap:clamp(16px,2.4vw,22px);}
+.deep-features li{display:flex;align-items:center;gap:14px;}
+.deep-features .ico{
+  flex:none;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.55);
+  display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.7);
+}
+.deep-features svg{width:22px;height:22px;color:var(--accent);}
+.deep-features h3{font-family:var(--sans);font-weight:800;color:var(--accent);font-size:.98rem;line-height:1.3;}
+.deep-features p{margin-top:2px;color:rgba(22,22,22,.62);font-size:.86rem;}
+
+.deep-hero-visual{position:relative;align-self:flex-end;}
+.deep-hero-visual img{width:100%;height:auto;display:block;filter:var(--grade-photo);}
+
+@media (max-width:900px){
+  .deep-hero-grid{grid-template-columns:1fr;}
+  .deep-hero-copy{max-width:none;text-align:center;}
+  .deep-rule{margin-left:auto;margin-right:auto;}
+  .deep-quote{padding-left:0;border-left:none;text-align:left;}
+  .deep-hero-visual{max-width:340px;margin:32px auto 0;}
+}
+
+/* ---------- deep product detail ---------- */
+.deep-detail{position:relative;aspect-ratio:2730/1538;}
+.deep-detail-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;}
+
+.deep-detail-heading{
+  position:absolute;left:46.4%;top:14%;width:44.8%;z-index:2;
+  text-align:center;
+}
+.deep-detail-heading h2{
+  font-family:var(--display);font-weight:800;letter-spacing:-.01em;
+  font-size:clamp(1.6rem,4.6vw,3.7rem);color:var(--ink);line-height:1.05;
+}
+.deep-detail-heading h2 span{color:var(--sku-plusdeep);}
+.deep-pill{
+  display:inline-block;margin-top:.5em;padding:.5em 1.5em;border-radius:999px;
+  background:var(--sku-plusdeep-soft);color:var(--sku-plusdeep);font-family:var(--sans);
+  font-weight:700;font-size:clamp(.85rem,2.1vw,1.5rem);letter-spacing:.02em;
+}
+
+.deep-spec-overlay{
+  position:absolute;left:46.4%;top:31.7%;width:44.8%;height:51.8%;z-index:2;
+  display:flex;flex-direction:column;font-family:var(--sans);
+}
+.deep-spec-row{display:grid;grid-template-columns:49.3% 50.7%;align-items:center;flex:1 1 0;min-height:0;}
+.deep-spec-row.header{flex:0 0 16.5%;}
+.deep-spec-label,.deep-spec-value{
+  padding:0 6% 0 6%;font-size:clamp(.42rem,1.05vw,.86rem);line-height:1.15;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.deep-spec-label{color:#FFFFFF;font-weight:700;}
+.deep-spec-value{color:var(--sku-plusdeep);font-weight:800;font-family:var(--display);text-align:center;padding-left:2%;padding-right:2%;}
+.deep-spec-row.header .deep-spec-label{font-weight:800;}
+.deep-spec-row.header .deep-spec-value{font-size:clamp(.36rem,.85vw,.7rem);}
+
+@media (max-width:640px){
+  .deep-detail-heading{top:3%;}
+  .deep-pill{margin-top:.3em;}
+}
+
+/* ---------- extra-deep hero (mirrors deep hero, red palette) ---------- */
+.extra-hero{
+  position:relative;overflow:hidden;
+  padding:clamp(56px,8vw,88px) 0 0;
+  background:linear-gradient(150deg, #8A2432 0%, #C97D82 40%, #EDD9DB 78%, var(--paper) 100%);
+}
+.extra-hero-grid{
+  position:relative;z-index:2;max-width:1180px;margin:0 auto;
+  padding:0 clamp(20px,5vw,56px);
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(420px,66%);gap:clamp(20px,3vw,40px);
+  align-items:flex-start;
+}
+.extra-hero-copy{max-width:520px;padding-bottom:clamp(56px,8vw,88px);}
+.extra-brand{font-family:var(--display);font-weight:800;font-size:clamp(2.2rem,3.6vw,3rem);color:#FFFFFF;letter-spacing:-.01em;}
+.extra-title{
+  font-family:var(--display);font-weight:800;letter-spacing:-.02em;line-height:.92;
+  font-size:clamp(4.2rem,9vw,7.2rem);
+  margin-top:4px;
+  background:linear-gradient(90deg,#6E232A 0%,#C81E1E 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.extra-subtitle{
+  margin-top:16px;font-family:var(--sans);font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  font-size:clamp(.95rem,1.4vw,1.2rem);color:#F3DCDF;
+}
+.extra-rule{width:56px;height:3px;background:#F3DCDF;margin-top:14px;border-radius:2px;}
+
+.extra-tagline{margin-top:clamp(24px,4vw,34px);}
+.extra-tagline .en-line{display:block;font-weight:700;color:var(--sku-extradeep);font-size:clamp(1.15rem,1.9vw,1.4rem);}
+.extra-tagline .sub-line{display:block;margin-top:4px;color:var(--ink);font-size:clamp(1.02rem,1.6vw,1.18rem);font-weight:500;}
+
+.extra-quote{
+  position:relative;margin-top:clamp(26px,4vw,38px);padding-left:20px;
+  border-left:3px solid rgba(255,255,255,.5);
+}
+.extra-quote-mark{font-family:var(--display);font-size:1.8rem;color:#4A1418;line-height:.5;display:block;}
+.extra-quote p{color:#FFFFFF;font-weight:700;font-size:clamp(.92rem,1.35vw,1.05rem);line-height:1.55;}
+.extra-quote .th{margin-top:10px;font-weight:500;color:rgba(255,255,255,.85);font-size:clamp(.82rem,1.15vw,.92rem);line-height:1.6;}
+
+.extra-features{list-style:none;margin:clamp(26px,4vw,36px) 0 0;padding:0;display:flex;flex-direction:column;gap:clamp(16px,2.4vw,22px);}
+.extra-features li{display:flex;align-items:center;gap:14px;}
+.extra-features .ico{
+  flex:none;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.55);
+  display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.7);
+}
+.extra-features svg{width:22px;height:22px;color:var(--sku-extradeep);}
+.extra-features h3{font-family:var(--sans);font-weight:800;color:var(--sku-extradeep);font-size:.98rem;line-height:1.3;}
+.extra-features p{margin-top:2px;color:rgba(22,22,22,.62);font-size:.86rem;}
+
+.extra-hero-visual{position:relative;align-self:flex-end;}
+.extra-hero-visual img{width:100%;height:auto;display:block;filter:var(--grade-photo);}
+
+@media (max-width:900px){
+  .extra-hero-grid{grid-template-columns:1fr;}
+  .extra-hero-copy{max-width:none;text-align:center;}
+  .extra-rule{margin-left:auto;margin-right:auto;}
+  .extra-quote{padding-left:0;border-left:none;text-align:left;}
+  .extra-hero-visual{max-width:340px;margin:32px auto 0;}
+}
+
+/* ---------- extra-deep product detail ---------- */
+.extra-detail{position:relative;aspect-ratio:2730/1538;}
+.extra-detail-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;}
+
+.extra-detail-heading{
+  position:absolute;left:46.4%;top:14%;width:44.8%;z-index:2;
+  text-align:center;
+}
+.extra-detail-heading h2{
+  font-family:var(--display);font-weight:800;letter-spacing:-.01em;
+  font-size:clamp(1.6rem,4.6vw,3.7rem);color:var(--ink);line-height:1.05;
+}
+.extra-detail-heading h2 span{color:var(--sku-extradeep);}
+.extra-pill{
+  display:inline-block;margin-top:.5em;padding:.5em 1.5em;border-radius:999px;
+  background:var(--sku-extradeep-soft);color:var(--sku-extradeep);font-family:var(--sans);
+  font-weight:700;font-size:clamp(.85rem,2.1vw,1.5rem);letter-spacing:.02em;
+}
+
+.extra-spec-overlay{
+  position:absolute;left:46.4%;top:31.7%;width:44.8%;height:51.8%;z-index:2;
+  display:flex;flex-direction:column;font-family:var(--sans);
+}
+.extra-spec-row{display:grid;grid-template-columns:49.3% 50.7%;align-items:center;flex:1 1 0;min-height:0;}
+.extra-spec-row.header{flex:0 0 16.5%;}
+.extra-spec-label,.extra-spec-value{
+  padding:0 6% 0 6%;font-size:clamp(.42rem,1.05vw,.86rem);line-height:1.15;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.extra-spec-label{color:#FFFFFF;font-weight:700;}
+.extra-spec-value{color:var(--sku-extradeep);font-weight:800;font-family:var(--display);text-align:center;padding-left:2%;padding-right:2%;}
+.extra-spec-row.header .extra-spec-label{font-weight:800;}
+.extra-spec-row.header .extra-spec-value{font-size:clamp(.36rem,.85vw,.7rem);}
+
+@media (max-width:640px){
+  .extra-detail-heading{top:3%;}
+  .extra-pill{margin-top:.3em;}
 }
 
 .product-hero-hotspot{
@@ -1064,8 +1266,8 @@ footer{color:var(--paper);padding:56px 0 30px;}
         <div class="nav-sub">
           <a href="#fine">FINE</a>
           <a href="#lips">LIPS</a>
-          <a href="#product-line">DEEP</a>
-          <a href="#product-line">EXTRA DEEP</a>
+          <a href="#deep">DEEP</a>
+          <a href="#extra-deep">EXTRA DEEP</a>
         </div>
       </div>
       <a href="#clinics">Find a Clinic</a>
@@ -1261,8 +1463,8 @@ footer{color:var(--paper);padding:56px 0 30px;}
     <img src="product-lineup.png" alt="Hyamax product line-up: Fine, Lips, Deep, Extra Deep">
     <a class="product-hero-hotspot" href="#fine" data-label="FINE" style="left:0;width:29.7%;" aria-label="HYAMAX Plus FINE"></a>
     <a class="product-hero-hotspot" href="#lips" data-label="LIPS" style="left:29.7%;width:21.85%;" aria-label="HYAMAX Plus LIPS"></a>
-    <a class="product-hero-hotspot" href="#product-line" data-label="DEEP" style="left:51.55%;width:21.25%;" aria-label="HYAMAX Plus DEEP"></a>
-    <a class="product-hero-hotspot" href="#product-line" data-label="EXTRA DEEP" style="left:72.8%;width:27.2%;" aria-label="HYAMAX Plus EXTRA DEEP"></a>
+    <a class="product-hero-hotspot" href="#deep" data-label="DEEP" style="left:51.55%;width:21.25%;" aria-label="HYAMAX Plus DEEP"></a>
+    <a class="product-hero-hotspot" href="#extra-deep" data-label="EXTRA DEEP" style="left:72.8%;width:27.2%;" aria-label="HYAMAX Plus EXTRA DEEP"></a>
   </div>
 </section>
 
@@ -1443,6 +1645,7 @@ footer{color:var(--paper);padding:56px 0 30px;}
       <img src="HYAMAX-fine-model.png" alt="HYAMAX Fine model holding product box">
     </div>
   </div>
+  <div class="fine-hero-glow" aria-hidden="true"></div>
 </section>
 
 <section class="fine-detail reveal">
@@ -1473,12 +1676,12 @@ footer{color:var(--paper);padding:56px 0 30px;}
     <div class="lip-hero-copy reveal">
       <span class="lip-brand">HYAMAX&reg;</span>
       <h2 class="lip-title en">LIPS</h2>
-      <span class="lip-subtitle">Lip Shaping &amp; Volumizing</span>
+      <span class="lip-subtitle">Plumping &amp; Defining</span>
       <div class="lip-rule"></div>
 
       <div class="lip-tagline">
-        <span class="en-line">เติมเต็มริมฝีปาก</span>
-        <span class="sub-line">ในสัดส่วนที่งดงามเป็นธรรมชาติ</span>
+        <span class="en-line">เติมเต็มปาก</span>
+        <span class="sub-line">ให้อวบอิ่มอย่างเป็นธรรมชาติ</span>
       </div>
 
       <blockquote class="lip-quote">
@@ -1523,7 +1726,7 @@ footer{color:var(--paper);padding:56px 0 30px;}
 
   <div class="lip-detail-heading">
     <h2>Hyamax&reg; <span>Plus LIPS</span></h2>
-    <span class="lip-pill">Lip Shaping &amp; Volumizing</span>
+    <span class="lip-pill">Plumping &amp; Defining</span>
   </div>
 
   <div class="lip-spec-overlay">
@@ -1538,6 +1741,152 @@ footer{color:var(--paper);padding:56px 0 30px;}
     <div class="lip-spec-row"><span class="lip-spec-label">Particle size (D50, &mu;m)</span><span class="lip-spec-value">600</span></div>
     <div class="lip-spec-row"><span class="lip-spec-label">MoD (mol%)</span><span class="lip-spec-value">6.0</span></div>
     <div class="lip-spec-row"><span class="lip-spec-label">Injection force (Avg, N)</span><span class="lip-spec-value">11</span></div>
+  </div>
+</section>
+
+<section class="deep-hero" id="deep">
+  <div class="deep-hero-grid">
+    <div class="deep-hero-copy reveal">
+      <span class="deep-brand">HYAMAX&reg;</span>
+      <h2 class="deep-title en">DEEP</h2>
+      <span class="deep-subtitle">Filling &amp; Sculpting</span>
+      <div class="deep-rule"></div>
+
+      <div class="deep-tagline">
+        <span class="en-line">เติมเต็มทุกมิติ</span>
+        <span class="sub-line">เป็นตัวเองในแบบที่ดีที่สุด</span>
+      </div>
+
+      <blockquote class="deep-quote">
+        <span class="deep-quote-mark">&ldquo;</span>
+        <p>For moderate to deep wrinkles and facial contouring, designed to provide balanced volume, structural support, and a natural-looking result.</p>
+        <p class="th">เหมาะสำหรับริ้วรอยระดับปานกลางถึงลึก และการปรับรูปหน้า ช่วยเติมเต็มวอลลุ่มอย่างสมดุล พร้อมเสริมการรองรับโครงสร้าง เพื่อผลลัพธ์ที่ดูเป็นธรรมชาติ</p>
+      </blockquote>
+
+      <ul class="deep-features">
+        <li>
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="M2 14l10 5 10-5"/></svg></span>
+          <div>
+            <h3 class="en">Medium to deep wrinkles</h3>
+            <p>เติมเต็มริ้วรอยระดับปานกลางถึงลึก</p>
+          </div>
+        </li>
+        <li>
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 4c-2.5 1.5-4 4.5-4 8s1.5 6.5 4 8"/><path d="M16 4c2.5 1.5 4 4.5 4 8s-1.5 6.5-4 8"/></svg></span>
+          <div>
+            <h3 class="en">Nasolabial folds</h3>
+            <p>แก้ไขร่องแก้มลึก</p>
+          </div>
+        </li>
+        <li>
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><ellipse cx="12" cy="10" rx="6.2" ry="6.8"/><path d="M7 14.5c.6 3 2.6 5 5 6 2.4-1 4.4-3 5-6"/></svg></span>
+          <div>
+            <h3 class="en">Facial contouring</h3>
+            <p>ปรับรูปหน้าให้สวยมีมิติ</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="deep-hero-visual reveal">
+      <img src="HYAMAX-deep-model.png" alt="HYAMAX Deep model holding product box">
+    </div>
+  </div>
+</section>
+
+<section class="deep-detail reveal">
+  <img class="deep-detail-bg" src="HYAMAX-deep.png" alt="HYAMAX Deep product box, gel texture and features panel">
+
+  <div class="deep-detail-heading">
+    <h2>Hyamax&reg; <span>Plus DEEP</span></h2>
+    <span class="deep-pill">Filling &amp; Sculpting</span>
+  </div>
+
+  <div class="deep-spec-overlay">
+    <div class="deep-spec-row header">
+      <span class="deep-spec-label">Features</span>
+      <span class="deep-spec-value">HYAMAX&reg; PLUS DEEP</span>
+    </div>
+    <div class="deep-spec-row"><span class="deep-spec-label">HA Concentration (mg/mL)</span><span class="deep-spec-value">20</span></div>
+    <div class="deep-spec-row"><span class="deep-spec-label">Storage modulus G&prime; (Pa)</span><span class="deep-spec-value">593</span></div>
+    <div class="deep-spec-row"><span class="deep-spec-label">Complex viscosity &eta;* (cP)</span><span class="deep-spec-value">95,280</span></div>
+    <div class="deep-spec-row"><span class="deep-spec-label">tan (&delta;)</span><span class="deep-spec-value">0.182</span></div>
+    <div class="deep-spec-row"><span class="deep-spec-label">Particle size (D50, &mu;m)</span><span class="deep-spec-value">600</span></div>
+    <div class="deep-spec-row"><span class="deep-spec-label">MoD (mol%)</span><span class="deep-spec-value">6.0</span></div>
+    <div class="deep-spec-row"><span class="deep-spec-label">Injection force (Avg, N)</span><span class="deep-spec-value">13</span></div>
+  </div>
+</section>
+
+<section class="extra-hero" id="extra-deep">
+  <div class="extra-hero-grid">
+    <div class="extra-hero-copy reveal">
+      <span class="extra-brand">HYAMAX&reg;</span>
+      <h2 class="extra-title en">EXTRA<br>DEEP</h2>
+      <span class="extra-subtitle">Volumizing &amp; Shaping</span>
+      <div class="extra-rule"></div>
+
+      <div class="extra-tagline">
+        <span class="en-line">เติมเต็มทุกมิติ</span>
+        <span class="sub-line">เป็นตัวเองในแบบที่ดีที่สุด</span>
+      </div>
+
+      <blockquote class="extra-quote">
+        <span class="extra-quote-mark">&ldquo;</span>
+        <p>For deep volume restoration and facial contouring, designed to provide enhanced projection, strong structural support, and a natural-looking result.</p>
+        <p class="th">เหมาะสำหรับการฟื้นฟูวอลลุ่มระดับลึกและการปรับรูปหน้า ช่วยเสริมมิติให้ชัดเจน พร้อมโครงสร้างที่แข็งแรง เพื่อผลลัพธ์ที่ดูเป็นธรรมชาติ</p>
+      </blockquote>
+
+      <ul class="extra-features">
+        <li>
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 13c0 3.5 1.8 6 4 7 2.2-1 4-3.5 4-7"/><path d="M8 13c0-3 1-6 4-8 3 2 4 5 4 8"/></svg></span>
+          <div>
+            <h3 class="en">Chin Augmentation</h3>
+            <p>เสริมคางให้ได้สัดส่วน</p>
+          </div>
+        </li>
+        <li>
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 8c0 6 3 11 7 12 4-1 7-6 7-12"/><path d="M8 9.5C9.5 8.5 15 8.5 16 9.5"/></svg></span>
+          <div>
+            <h3 class="en">Jawline Definition</h3>
+            <p>ปรับกรามให้ชัดเจน</p>
+          </div>
+        </li>
+        <li>
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="7" cy="7" r="1.4"/><circle cx="17" cy="7" r="1.4"/><circle cx="12" cy="13" r="1.4"/><circle cx="7" cy="18" r="1.4"/><circle cx="17" cy="18" r="1.4"/><path d="M7 7 12 13 17 7M12 13 7 18M12 13l5 5"/></svg></span>
+          <div>
+            <h3 class="en">Structural Facial Enhancement</h3>
+            <p>เสริมโครงสร้างใบหน้าให้แข็งแรง</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="extra-hero-visual reveal">
+      <img src="HYAMAX-Extra deep-model.png" alt="HYAMAX Extra Deep model holding product box">
+    </div>
+  </div>
+</section>
+
+<section class="extra-detail reveal">
+  <img class="extra-detail-bg" src="HYAMAX-extra deep.png" alt="HYAMAX Extra Deep product box, gel texture and features panel">
+
+  <div class="extra-detail-heading">
+    <h2>Hyamax&reg; <span>Extra DEEP</span></h2>
+    <span class="extra-pill">Volumizing &amp; Shaping</span>
+  </div>
+
+  <div class="extra-spec-overlay">
+    <div class="extra-spec-row header">
+      <span class="extra-spec-label">Features</span>
+      <span class="extra-spec-value">HYAMAX&reg; EXTRA DEEP</span>
+    </div>
+    <div class="extra-spec-row"><span class="extra-spec-label">HA Concentration (mg/mL)</span><span class="extra-spec-value">20</span></div>
+    <div class="extra-spec-row"><span class="extra-spec-label">Storage modulus G&prime; (Pa)</span><span class="extra-spec-value">612</span></div>
+    <div class="extra-spec-row"><span class="extra-spec-label">Complex viscosity &eta;* (cP)</span><span class="extra-spec-value">98,472</span></div>
+    <div class="extra-spec-row"><span class="extra-spec-label">tan (&delta;)</span><span class="extra-spec-value">0.189</span></div>
+    <div class="extra-spec-row"><span class="extra-spec-label">Particle size (D50, &mu;m)</span><span class="extra-spec-value">1000</span></div>
+    <div class="extra-spec-row"><span class="extra-spec-label">MoD (mol%)</span><span class="extra-spec-value">6.0</span></div>
+    <div class="extra-spec-row"><span class="extra-spec-label">Injection force (Avg, N)</span><span class="extra-spec-value">15</span></div>
   </div>
 </section>
 
