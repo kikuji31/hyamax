@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<title>Hyamax Academy</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script>
+  try{
+    if(localStorage.getItem("hyamaxAcademyAuth") !== "1"){
+      window.location.replace("login.html");
+    }
+  }catch(e){ window.location.replace("login.html"); }
+</script>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="site-base.css">
+<style>
+.academy-hero{background:var(--accent);color:#FFFFFF;padding:clamp(96px,14vw,150px) 0 clamp(40px,6vw,56px);}
+.academy-hero-inner{max-width:1180px;margin:0 auto;padding:0 clamp(20px,5vw,56px);}
+.academy-title{
+  font-family:var(--display);font-weight:800;letter-spacing:-.02em;line-height:.96;
+  font-size:clamp(2.6rem,6vw,4.4rem);color:#FFFFFF;text-transform:uppercase;
+}
+.academy-sub{
+  margin-top:14px;font-family:var(--sans);font-weight:700;letter-spacing:.06em;
+  text-transform:uppercase;font-size:clamp(.78rem,1.2vw,.92rem);color:rgba(255,255,255,.75);
+}
+
+.academy-band{background:var(--accent);padding:clamp(32px,5vw,48px) 0 clamp(64px,9vw,96px);}
+.academy-grid{
+  max-width:1180px;margin:0 auto;padding:0 clamp(20px,5vw,56px);
+  display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(18px,2.4vw,28px);
+}
+.academy-card{
+  display:block;text-decoration:none;color:inherit;text-align:center;cursor:pointer;
+  background:none;border:none;padding:0;font:inherit;
+}
+.academy-card-visual{
+  position:relative;overflow:hidden;border-radius:14px;aspect-ratio:1/1;
+  background:linear-gradient(180deg,#CDE6F8 0%,#EAF4FC 60%,#EAF4FC 100%);
+  transition:transform .2s ease;
+}
+.academy-card:hover .academy-card-visual{transform:translateY(-4px);}
+.academy-card-visual .cloud{position:absolute;top:18%;left:50%;transform:translateX(-50%);width:70%;height:34%;}
+.academy-card-visual .cloud::before,.academy-card-visual .cloud::after{content:'';position:absolute;background:#FFFFFF;border-radius:50%;}
+.academy-card-visual .cloud::before{width:62%;height:100%;left:0;top:20%;}
+.academy-card-visual .cloud::after{width:52%;height:80%;right:0;top:0;}
+.academy-card-visual .hill{position:absolute;left:-10%;right:-10%;bottom:-6%;height:42%;background:#8DC63F;border-radius:50% 50% 0 0/100% 100% 0 0;}
+.academy-card-visual .hill::before{content:'';position:absolute;left:-10%;right:40%;bottom:20%;height:80%;background:#B3D877;border-radius:50% 50% 0 0/100% 100% 0 0;}
+.academy-card-label{
+  margin-top:12px;font-family:var(--sans);font-weight:800;font-size:.82rem;
+  letter-spacing:.03em;text-transform:uppercase;color:#FFFFFF;
+}
+
+@media (max-width:900px){
+  .academy-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:480px){
+  .academy-grid{grid-template-columns:1fr;max-width:320px;}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-row">
+    <a class="brand" href="index.html">
+      <span class="brand-mark en">HYAMAX<sup>&reg;</sup></span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">HOME</a>
+      <a href="index.html#about">ABOUT</a>
+      <a href="index.html#product-line">Product</a>
+      <a href="index.html#clinics">Find a Clinic</a>
+      <a href="index.html#event">EVENT</a>
+      <button type="button" class="btn btn-primary" id="logoutBtnMobile">Logout</button>
+    </nav>
+    <div class="nav-cta">
+      <button type="button" class="btn btn-primary" id="logoutBtn">Logout</button>
+      <button class="nav-toggle" id="navToggle" aria-label="เปิดเมนู" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<section class="academy-hero">
+  <div class="academy-hero-inner">
+    <h1 class="academy-title en">Hyamax<br>Academy</h1>
+    <p class="academy-sub">Exclusive medical education for<br>healthcare professionals</p>
+  </div>
+</section>
+
+<section class="academy-band">
+  <div class="academy-grid">
+    <a class="academy-card" href="academy-course.html?course=master-trainer&title=Master%20Trainer">
+      <div class="academy-card-visual" aria-hidden="true"><span class="cloud"></span><span class="hill"></span></div>
+      <div class="academy-card-label en">Master Trainer</div>
+    </a>
+    <a class="academy-card" href="academy-course.html?course=train-the-trainer&title=Train%20the%20Trainer">
+      <div class="academy-card-visual" aria-hidden="true"><span class="cloud"></span><span class="hill"></span></div>
+      <div class="academy-card-label en">Train the Trainer</div>
+    </a>
+    <a class="academy-card" href="academy-course.html?course=1st-hands-on&title=1st%20Hands-on">
+      <div class="academy-card-visual" aria-hidden="true"><span class="cloud"></span><span class="hill"></span></div>
+      <div class="academy-card-label en">1st Hands On</div>
+    </a>
+    <a class="academy-card" href="academy-course.html?course=webinar&title=Webinar">
+      <div class="academy-card-visual" aria-hidden="true"><span class="cloud"></span><span class="hill"></span></div>
+      <div class="academy-card-label en">Webinar</div>
+    </a>
+    <a class="academy-card" href="academy-course.html?course=coming-soon-1&title=Coming%20Soon">
+      <div class="academy-card-visual" aria-hidden="true"><span class="cloud"></span><span class="hill"></span></div>
+      <div class="academy-card-label en">Coming Soon</div>
+    </a>
+    <a class="academy-card" href="academy-course.html?course=coming-soon-2&title=Coming%20Soon">
+      <div class="academy-card-visual" aria-hidden="true"><span class="cloud"></span><span class="hill"></span></div>
+      <div class="academy-card-label en">Coming Soon</div>
+    </a>
+    <a class="academy-card" href="academy-course.html?course=coming-soon-3&title=Coming%20Soon">
+      <div class="academy-card-visual" aria-hidden="true"><span class="cloud"></span><span class="hill"></span></div>
+      <div class="academy-card-label en">Coming Soon</div>
+    </a>
+    <a class="academy-card" href="academy-course.html?course=coming-soon-4&title=Coming%20Soon">
+      <div class="academy-card-visual" aria-hidden="true"><span class="cloud"></span><span class="hill"></span></div>
+      <div class="academy-card-label en">Coming Soon</div>
+    </a>
+  </div>
+</section>
+</main>
+
+<script>
+(function(){
+  function doLogout(){
+    try{ localStorage.removeItem("hyamaxAcademyAuth"); }catch(e){}
+    window.location.href = "login.html";
+  }
+  var logout = document.getElementById("logoutBtn");
+  if(logout){ logout.addEventListener("click", doLogout); }
+  var logoutMobile = document.getElementById("logoutBtnMobile");
+  if(logoutMobile){ logoutMobile.addEventListener("click", doLogout); }
+
+  var toggle = document.getElementById("navToggle");
+  var links = document.getElementById("navLinks");
+  if(toggle && links){
+    toggle.addEventListener("click", function(){
+      var open = links.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+  }
+})();
+</script>
+</body>
+</html>
