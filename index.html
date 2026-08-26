@@ -849,6 +849,151 @@ hr.rule{border:none;border-top:1px solid var(--line);margin:0;}
   .extra-pill{margin-top:.3em;}
 }
 
+/* ---------- event hero + cards ---------- */
+.event-hero{background:var(--paper);}
+.event-hero-banner{position:relative;overflow:hidden;min-height:clamp(380px,42vw,540px);}
+.event-hero-media{position:absolute;inset:0;z-index:0;}
+.event-hero-media img{width:100%;height:100%;object-fit:cover;object-position:right center;display:block;}
+.event-hero-media::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg, var(--paper) 0%, rgba(255,255,255,.85) 22%, rgba(255,255,255,0) 52%);
+}
+.event-hero-inner{position:relative;z-index:2;padding:clamp(48px,7vw,72px) 0 clamp(40px,6vw,56px);}
+.event-title{
+  font-family:var(--display);font-weight:800;letter-spacing:-.02em;line-height:.98;
+  font-size:clamp(2.6rem,5.6vw,4.6rem);
+}
+.event-title .line1{display:block;color:var(--ink);}
+.event-title .line2{display:block;color:#4296EE;}
+.event-sub{margin-top:14px;max-width:36ch;color:var(--ink-soft);font-size:1.02rem;line-height:1.55;}
+.event-rule{width:64px;height:3px;background:#BC2D38;margin-top:22px;border-radius:2px;}
+.event-tabs{margin-top:24px;display:flex;gap:14px;flex-wrap:wrap;}
+.event-tab{
+  font-family:var(--sans);font-weight:700;font-size:.82rem;letter-spacing:.02em;
+  padding:13px 24px;border-radius:999px;border:1px solid var(--line-strong);
+  background:var(--paper);color:var(--ink-soft);cursor:pointer;transition:all .2s ease;
+}
+.event-tab.is-active{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);}
+.event-tab:hover:not(.is-active){border-color:var(--accent);color:var(--accent);}
+
+.event-track{
+  position:relative;z-index:2;
+  display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x proximity;
+  padding:4px 4px clamp(56px,8vw,88px);margin:0;list-style:none;
+  -webkit-mask-image:linear-gradient(90deg,#000 94%,transparent 100%);
+  mask-image:linear-gradient(90deg,#000 94%,transparent 100%);
+}
+.event-card{
+  flex:0 0 clamp(300px,34vw,380px);scroll-snap-align:start;
+  display:grid;grid-template-columns:1.05fr .8fr 1.05fr;
+  background:var(--paper-card);border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden;box-shadow:var(--shadow-sm);transition:transform .25s ease, box-shadow .25s ease;
+}
+.event-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
+.event-card-date{padding:20px 16px;display:flex;flex-direction:column;}
+.event-badge{
+  align-self:flex-start;font-family:var(--sans);font-weight:800;font-size:.66rem;
+  letter-spacing:.05em;text-transform:uppercase;color:#FFFFFF;background:#6FA8DC;
+  padding:6px 13px;border-radius:999px;margin-bottom:14px;white-space:nowrap;
+}
+.event-month{font-family:var(--sans);font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);}
+.event-day{font-family:var(--display);font-weight:800;font-size:2.5rem;line-height:1.05;color:var(--accent);}
+.event-year{font-family:var(--sans);font-weight:700;font-size:.92rem;color:var(--accent);margin-top:2px;}
+.event-time{margin-top:10px;font-size:.76rem;color:var(--ink-soft);line-height:1.4;}
+.event-card-visual{position:relative;background:linear-gradient(180deg,#CDE6F8 0%,#EAF4FC 60%,#EAF4FC 100%);overflow:hidden;}
+.event-card-visual .cloud{position:absolute;top:18%;left:50%;transform:translateX(-50%);width:70%;height:34%;}
+.event-card-visual .cloud::before,.event-card-visual .cloud::after{content:'';position:absolute;background:#FFFFFF;border-radius:50%;}
+.event-card-visual .cloud::before{width:62%;height:100%;left:0;top:20%;}
+.event-card-visual .cloud::after{width:52%;height:80%;right:0;top:0;}
+.event-card-visual .hill{position:absolute;left:-10%;right:-10%;bottom:-6%;height:42%;background:#8DC63F;border-radius:50% 50% 0 0/100% 100% 0 0;}
+.event-card-visual .hill::before{content:'';position:absolute;left:-10%;right:40%;bottom:20%;height:80%;background:#B3D877;border-radius:50% 50% 0 0/100% 100% 0 0;}
+.event-card-body{padding:20px 16px;display:flex;flex-direction:column;}
+.event-card-body h3{font-family:var(--sans);font-weight:800;font-size:1rem;color:var(--ink);line-height:1.3;}
+.event-card-body .doctor{margin-top:10px;font-size:.82rem;color:var(--ink-soft);line-height:1.6;}
+.event-card-foot{margin-top:auto;padding-top:14px;display:flex;align-items:center;gap:6px;}
+.event-card-foot svg{width:16px;height:16px;color:#C0392B;flex:none;}
+.event-card-foot span{font-family:var(--sans);font-weight:700;font-size:.82rem;color:var(--ink);}
+.event-live{
+  display:inline-flex;align-items:center;gap:6px;font-family:var(--sans);font-weight:800;
+  font-size:.72rem;letter-spacing:.03em;color:#C0392B;border:1px solid #C0392B;
+  padding:4px 12px 4px 8px;border-radius:999px;
+}
+.event-live .dot{width:8px;height:8px;border-radius:50%;background:#C0392B;}
+.event-panel{position:relative;z-index:2;}
+.event-panel-head{
+  font-family:var(--display);font-weight:800;letter-spacing:-.01em;
+  font-size:clamp(1.3rem,2.2vw,1.7rem);color:var(--ink);text-transform:uppercase;
+}
+.event-panel-head .accent{color:#4296EE;}
+.event-panel-rule{width:56px;height:3px;background:#BC2D38;margin-top:10px;border-radius:2px;}
+
+.past-event-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,36px);
+  margin-top:clamp(24px,3.5vw,36px);padding-bottom:clamp(56px,8vw,88px);
+}
+.past-event-card{display:flex;flex-direction:column;}
+.past-event-year{font-family:var(--sans);font-weight:700;font-size:.85rem;color:var(--ink-soft);}
+.past-event-title{margin-top:2px;font-family:var(--display);font-weight:800;font-size:1.1rem;color:var(--ink);}
+.past-event-visual{margin-top:12px;border-radius:12px;overflow:hidden;aspect-ratio:16/10;}
+.past-event-meta{margin-top:12px;font-size:.82rem;color:var(--ink-soft);line-height:1.7;}
+.past-event-meta span{display:block;}
+
+.event-empty{
+  padding:clamp(32px,5vw,48px);margin-top:clamp(24px,3.5vw,36px);
+  border:1px dashed var(--line-strong);border-radius:var(--radius);text-align:center;
+  color:var(--ink-soft);font-size:.95rem;
+}
+[data-event-panel][hidden]{display:none;}
+
+@media (max-width:820px){
+  .past-event-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:520px){
+  .past-event-grid{grid-template-columns:1fr;}
+}
+
+/* ---------- find a clinic ---------- */
+.clinic-head{position:relative;padding-top:6px;}
+.clinic-lattice{position:absolute;top:-30px;right:0;width:280px;height:190px;z-index:0;pointer-events:none;}
+.clinic-title{
+  position:relative;z-index:1;
+  font-family:var(--display);font-weight:800;letter-spacing:-.02em;line-height:1.02;
+  font-size:clamp(1.9rem,3.6vw,2.8rem);text-transform:uppercase;
+}
+.clinic-title .line1{display:block;color:var(--ink);}
+.clinic-title .line2{display:block;color:#4296EE;}
+
+.clinic-logo-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:clamp(28px,4vw,40px);}
+.clinic-logo{
+  aspect-ratio:1/1;border-radius:14px;overflow:hidden;border:1px solid var(--line);
+  background:var(--paper-card);box-shadow:var(--shadow-sm);transition:transform .2s ease, box-shadow .2s ease;
+}
+.clinic-logo:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
+.clinic-logo img{width:100%;height:100%;object-fit:cover;display:block;}
+[data-clinic-page][hidden]{display:none;}
+
+.clinic-pagination{display:flex;justify-content:center;gap:10px;margin-top:clamp(28px,4vw,40px);flex-wrap:wrap;}
+.clinic-page-btn{
+  width:38px;height:38px;border-radius:10px;border:1px solid var(--line-strong);
+  background:var(--paper);color:var(--ink-soft);font-family:var(--sans);font-weight:700;
+  cursor:pointer;transition:all .2s ease;
+}
+.clinic-page-btn.is-active{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);}
+.clinic-page-btn:hover:not(.is-active){border-color:var(--accent);color:var(--accent);}
+
+@media (max-width:900px){
+  .clinic-logo-grid{grid-template-columns:repeat(4,1fr);}
+}
+@media (max-width:560px){
+  .clinic-logo-grid{grid-template-columns:repeat(3,1fr);gap:10px;}
+  .clinic-lattice{display:none;}
+}
+
+@media (max-width:640px){
+  .event-card{flex-basis:82vw;grid-template-columns:1fr .7fr 1fr;}
+  .event-day{font-size:2.1rem;}
+}
+
 .product-hero-hotspot{
   position:absolute;top:0;height:100%;
   border-radius:12px;transition:background .2s ease;
@@ -1890,6 +2035,230 @@ footer{color:var(--paper);padding:56px 0 30px;}
   </div>
 </section>
 
+<section class="event-hero" id="event">
+  <div class="event-hero-banner">
+    <div class="event-hero-media" aria-hidden="true">
+      <img src="HYAMAX event.png" alt="">
+    </div>
+    <div class="wrap event-hero-inner">
+      <div class="reveal">
+        <h1 class="event-title en">
+          <span class="line1">HYAMAX</span>
+          <span class="line2">EVENTS</span>
+        </h1>
+        <p class="event-sub">Where Science, Education &amp; Aesthetic Innovation Meet.</p>
+        <div class="event-rule"></div>
+
+        <div class="event-tabs" role="tablist">
+          <button type="button" class="event-tab is-active" data-event-tab="upcoming" role="tab" aria-selected="true">Up Coming Events</button>
+          <button type="button" class="event-tab" data-event-tab="past" role="tab" aria-selected="false">Past Events</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="event-panel" data-event-panel="upcoming">
+      <h2 class="event-panel-head"><span>Upcoming</span> <span class="accent">Events</span></h2>
+      <div class="event-panel-rule"></div>
+
+      <ul class="event-track">
+        <li class="event-card reveal">
+          <div class="event-card-date">
+            <span class="event-badge">Handson</span>
+            <span class="event-month">OCT</span>
+            <span class="event-day">15</span>
+            <span class="event-year">2026</span>
+            <span class="event-time">09.00 &ndash; 17.00<br>(GMT+7)</span>
+          </div>
+          <div class="event-card-visual" aria-hidden="true"><span class="cloud"></span><span class="hill"></span></div>
+          <div class="event-card-body">
+            <h3 class="en">1st Hands-on</h3>
+            <p class="doctor">Dr. xxxxxxx<br>Dr. xxxxxxxxx</p>
+            <div class="event-card-foot">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C7.6 2 4 5.6 4 10c0 6 8 12 8 12s8-6 8-12c0-4.4-3.6-8-8-8Zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/></svg>
+              <span>DPU</span>
+            </div>
+          </div>
+        </li>
+
+        <li class="event-card reveal">
+          <div class="event-card-date">
+            <span class="event-badge">Webinar</span>
+            <span class="event-month">SEP</span>
+            <span class="event-day">29</span>
+            <span class="event-year">2026</span>
+            <span class="event-time">20.00 &ndash; 21.00<br>(GMT+7)</span>
+          </div>
+          <div class="event-card-visual" aria-hidden="true"><span class="cloud"></span><span class="hill"></span></div>
+          <div class="event-card-body">
+            <h3 class="en">Lips &amp; Nasolabial Fold</h3>
+            <p class="doctor">Dr. xxxxxxx<br>Dr. xxxxxxxxx</p>
+            <div class="event-card-foot">
+              <span class="event-live"><span class="dot"></span>LIVE</span>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="event-panel" data-event-panel="past" hidden>
+      <h2 class="event-panel-head"><span>Past</span> <span class="accent">Events</span></h2>
+      <div class="event-panel-rule"></div>
+
+      <div class="past-event-grid">
+        <div class="past-event-card reveal">
+          <span class="past-event-year">2026</span>
+          <h3 class="past-event-title en">Hands-on</h3>
+          <div class="event-card-visual past-event-visual" aria-hidden="true"><span class="cloud"></span><span class="hill"></span></div>
+          <div class="past-event-meta"><span>Topic :</span><span>Speakers :</span><span>Date :</span></div>
+        </div>
+        <div class="past-event-card reveal">
+          <span class="past-event-year">2026</span>
+          <h3 class="past-event-title en">Hands-on</h3>
+          <div class="event-card-visual past-event-visual" aria-hidden="true"><span class="cloud"></span><span class="hill"></span></div>
+          <div class="past-event-meta"><span>Topic :</span><span>Speakers :</span><span>Date :</span></div>
+        </div>
+        <div class="past-event-card reveal">
+          <span class="past-event-year">2026</span>
+          <h3 class="past-event-title en">Hands-on</h3>
+          <div class="event-card-visual past-event-visual" aria-hidden="true"><span class="cloud"></span><span class="hill"></span></div>
+          <div class="past-event-meta"><span>Topic :</span><span>Speakers :</span><span>Date :</span></div>
+        </div>
+        <div class="past-event-card reveal">
+          <span class="past-event-year">2026</span>
+          <h3 class="past-event-title en">Hands-on</h3>
+          <div class="event-card-visual past-event-visual" aria-hidden="true"><span class="cloud"></span><span class="hill"></span></div>
+          <div class="past-event-meta"><span>Topic :</span><span>Speakers :</span><span>Date :</span></div>
+        </div>
+        <div class="past-event-card reveal">
+          <span class="past-event-year">2026</span>
+          <h3 class="past-event-title en">Hands-on</h3>
+          <div class="event-card-visual past-event-visual" aria-hidden="true"><span class="cloud"></span><span class="hill"></span></div>
+          <div class="past-event-meta"><span>Topic :</span><span>Speakers :</span><span>Date :</span></div>
+        </div>
+        <div class="past-event-card reveal">
+          <span class="past-event-year">2026</span>
+          <h3 class="past-event-title en">Hands-on</h3>
+          <div class="event-card-visual past-event-visual" aria-hidden="true"><span class="cloud"></span><span class="hill"></span></div>
+          <div class="past-event-meta"><span>Topic :</span><span>Speakers :</span><span>Date :</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="clinics">
+  <div class="wrap">
+    <div class="clinic-head reveal">
+      <canvas class="clinic-lattice" id="clinicsLattice" aria-hidden="true"></canvas>
+      <h2 class="clinic-title en">
+        <span class="line1">Find a</span>
+        <span class="line2">Clinic</span>
+      </h2>
+    </div>
+
+    <div class="clinic-logo-grid" data-clinic-page="1">
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_1.jpg" alt="Warinya Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_2.jpg" alt="Waleerat Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_3.jpg" alt="V Square Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_4.jpg" alt="UD Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_5.jpg" alt="Ticha Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_6.jpg" alt="The Sky Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_7.jpg" alt="The Phu Bangkok Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_8.jpg" alt="The Image Medical Aesthetic Centre" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_9.jpg" alt="The Great Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_10.jpg" alt="The Bright Skin" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_11.jpg" alt="Sureenan Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_12.jpg" alt="StarMed Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_13.jpg" alt="SSB Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_14.jpg" alt="Srichinda Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_15.jpg" alt="Space The Ritz" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_16.jpg" alt="Somchai Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_17.jpg" alt="S'mart Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_18.jpg" alt="Shyne Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_19.jpg" alt="Bella Care by Dr.Nopphawan" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_20.jpg" alt="Romrawin" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_21.jpg" alt="Rayne" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_22.jpg" alt="Rasita Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_23.jpg" alt="Rancha Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_24.jpg" alt="Queensway" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_25.jpg" alt="Puttiphat Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_26.jpg" alt="Ployrada Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_27.jpg" alt="Pista Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_28.jpg" alt="Phyathai Hospital 2" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_29.jpg" alt="Patrawut Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_30.jpg" alt="Patcha Clinic" loading="lazy"></div>
+    </div>
+
+    <div class="clinic-logo-grid" data-clinic-page="2" hidden>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_31.jpg" alt="Nitipon Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_32.jpg" alt="Narissa Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_33.jpg" alt="Mousai Wellness Center" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_34.jpg" alt="Mirror Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_35.jpg" alt="M Line Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_36.jpg" alt="Mhor Jik Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_37.jpg" alt="Mellow Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_38.jpg" alt="Med Design Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_39.jpg" alt="mdi Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_40.jpg" alt="Mabel Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_41.jpg" alt="Partner clinic logo" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_42.jpg" alt="Lelux Official Hospital" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_43.jpg" alt="LBC Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_44.jpg" alt="Laliza Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_45.jpg" alt="La Mong" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_46.jpg" alt="KPS Medical Center" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_47.jpg" alt="Kay Clinic by Dr.Bell" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_48.jpg" alt="Kantima Clinic by Dr.Ern" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_49.jpg" alt="Partner clinic logo" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_50.jpg" alt="Jiin Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_51.jpg" alt="iGlam Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_52.jpg" alt="Gracia The Private Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_53.jpg" alt="GNL Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_54.jpg" alt="G Gangnam Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_55.jpg" alt="Fresh Code" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_56.jpg" alt="First Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_57.jpg" alt="a+ by Dr.Jady Beauty Hair Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_58.jpg" alt="Zkin" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_59.jpg" alt="Dr. Kong Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_60.jpg" alt="Dr. Kate" loading="lazy"></div>
+    </div>
+
+    <div class="clinic-logo-grid" data-clinic-page="3" hidden>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_61.jpg" alt="Dr J Clinic Aesthetic & Dermatology" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_62.jpg" alt="a+ by Dr.Jady Beauty Hair Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_63.jpg" alt="Doo Dee Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_64.jpg" alt="DIO Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_65.jpg" alt="Class Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_66.jpg" alt="Chill Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_67.jpg" alt="Chalida Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_68.jpg" alt="Chada Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_69.jpg" alt="Chaba Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_70.jpg" alt="BSC Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_71.jpg" alt="Bella Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_72.jpg" alt="Belkin" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_73.jpg" alt="Believe Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_74.jpg" alt="BDMS" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_75.jpg" alt="BBC Baan Bangna Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_76.jpg" alt="Partner clinic logo" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_77.jpg" alt="Bangkok First Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_78.jpg" alt="Aster Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_79.jpg" alt="Artisti9 Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_80.jpg" alt="APEX Medical Center" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_81.jpg" alt="Anutra Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_82.jpg" alt="Aescent Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_83.jpg" alt="Thirty Six Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_84.jpg" alt="2PRAW Clinic" loading="lazy"></div>
+    </div>
+
+    <div class="clinic-pagination" role="tablist">
+      <button type="button" class="clinic-page-btn is-active" data-clinic-goto="1">1</button>
+      <button type="button" class="clinic-page-btn" data-clinic-goto="2">2</button>
+      <button type="button" class="clinic-page-btn" data-clinic-goto="3">3</button>
+    </div>
+  </div>
+</section>
+
 <section class="band band-deep" id="contact">
   <div class="wrap contact-grid">
     <div class="reveal">
@@ -2204,5 +2573,31 @@ footer{color:var(--paper);padding:56px 0 30px;}
   }
 
   setupLattice("clinicsLattice", 46);
+
+  var eventTabs = document.querySelectorAll(".event-tab");
+  var eventPanels = document.querySelectorAll("[data-event-panel]");
+  eventTabs.forEach(function(tab){
+    tab.addEventListener("click", function(){
+      var target = tab.getAttribute("data-event-tab");
+      eventTabs.forEach(function(t){
+        t.classList.toggle("is-active", t === tab);
+        t.setAttribute("aria-selected", t === tab ? "true" : "false");
+      });
+      eventPanels.forEach(function(p){
+        p.hidden = p.getAttribute("data-event-panel") !== target;
+      });
+    });
+  });
+
+  var clinicBtns = document.querySelectorAll(".clinic-page-btn");
+  var clinicPages = document.querySelectorAll("[data-clinic-page]");
+  clinicBtns.forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var target = btn.getAttribute("data-clinic-goto");
+      clinicBtns.forEach(function(b){ b.classList.toggle("is-active", b === btn); });
+      clinicPages.forEach(function(p){ p.hidden = p.getAttribute("data-clinic-page") !== target; });
+      document.getElementById("clinics").scrollIntoView({behavior: reduceMotion ? "auto" : "smooth", block: "start"});
+    });
+  });
 })();
 </script>
