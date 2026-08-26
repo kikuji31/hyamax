@@ -205,7 +205,7 @@
 .fine-detail-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;}
 
 .fine-detail-heading{
-  position:absolute;left:46.3%;top:14%;width:44.5%;z-index:2;
+  position:absolute;left:46.3%;top:max(2%, calc(14% - 50px));width:44.5%;z-index:2;
   text-align:center;
 }
 .fine-detail-heading h2{
@@ -234,9 +234,6 @@
 .fine-spec-row.header .fine-spec-label{font-weight:800;}
 .fine-spec-row.header .fine-spec-value{font-size:clamp(.36rem,.85vw,.7rem);}
 
-@media (max-width:480px){
-  .fine-detail-heading{top:10%;}
-}
 
 /* ---------- lip hero (mirrors fine hero, rose palette) ---------- */
 .lip-hero{
@@ -303,7 +300,7 @@
 .lip-detail-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;}
 
 .lip-detail-heading{
-  position:absolute;left:46.4%;top:14%;width:44.8%;z-index:2;
+  position:absolute;left:46.4%;top:max(2%, calc(14% - 50px));width:44.8%;z-index:2;
   text-align:center;
 }
 .lip-detail-heading h2{
@@ -332,9 +329,6 @@
 .lip-spec-row.header .lip-spec-label{font-weight:800;}
 .lip-spec-row.header .lip-spec-value{font-size:clamp(.36rem,.85vw,.7rem);}
 
-@media (max-width:480px){
-  .lip-detail-heading{top:10%;}
-}
 
 /* ---------- deep hero (mirrors fine hero, green palette) ---------- */
 .deep-hero{
@@ -400,7 +394,7 @@
 .deep-detail-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;}
 
 .deep-detail-heading{
-  position:absolute;left:46.4%;top:14%;width:44.8%;z-index:2;
+  position:absolute;left:46.4%;top:max(2%, calc(14% - 50px));width:44.8%;z-index:2;
   text-align:center;
 }
 .deep-detail-heading h2{
@@ -429,9 +423,6 @@
 .deep-spec-row.header .deep-spec-label{font-weight:800;}
 .deep-spec-row.header .deep-spec-value{font-size:clamp(.36rem,.85vw,.7rem);}
 
-@media (max-width:480px){
-  .deep-detail-heading{top:10%;}
-}
 
 /* ---------- extra-deep hero (mirrors deep hero, red palette) ---------- */
 .extra-hero{
@@ -498,7 +489,7 @@
 .extra-detail-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;}
 
 .extra-detail-heading{
-  position:absolute;left:46.4%;top:14%;width:44.8%;z-index:2;
+  position:absolute;left:46.4%;top:max(2%, calc(14% - 50px));width:44.8%;z-index:2;
   text-align:center;
 }
 .extra-detail-heading h2{
@@ -527,9 +518,6 @@
 .extra-spec-row.header .extra-spec-label{font-weight:800;}
 .extra-spec-row.header .extra-spec-value{font-size:clamp(.36rem,.85vw,.7rem);}
 
-@media (max-width:480px){
-  .extra-detail-heading{top:10%;}
-}
 
 /* ---------- event hero + cards ---------- */
 .event-hero{background:var(--paper);}
