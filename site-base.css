@@ -253,29 +253,44 @@ hr.rule{border:none;border-top:1px solid var(--line);margin:0;}
 }
 
 /* ---------- hero ---------- */
+/* The hero is authored at a fixed 1600x760 reference size (.hero-scale) and
+   scaled down as one unit via CSS container-query width so the exact same
+   composition (text + portrait spacing) holds at every viewport, phones
+   included, instead of switching to a different stacked layout. */
 .hero{
   position:relative;
   padding-top:118px;
   background:linear-gradient(115deg, #76A5DD 0%, #A6C7E9 34%, #D2E4F4 64%, var(--paper) 100%);
-  min-height:clamp(540px,64vw,760px);
+}
+.hero-stage{
+  position:relative;width:100%;
+  aspect-ratio:1600/760;
+  container-type:inline-size;
+  overflow-x:hidden;
+}
+.hero-scale{
+  position:absolute;top:0;left:50%;
+  width:1600px;height:760px;
+  transform:translateX(-50%) scale(min(1, calc(100cqw / 1600px)));
+  transform-origin:top center;
 }
 .hero-inner{
   position:relative;z-index:2;
   max-width:1180px;margin:0 auto;height:100%;
-  min-height:clamp(400px,48vw,540px);
+  min-height:540px;
   display:flex;align-items:center;justify-content:center;
-  padding:0 clamp(20px,5vw,56px) clamp(28px,6vw,72px);
+  padding:0 56px 72px;
 }
-.hero-copy{position:relative;max-width:min(820px,86vw);margin:0 auto;color:#FFFFFF;text-align:center;--shift:clamp(0px,27vw,430px);}
-.hero-eyebrow{display:block;font-family:var(--sans);font-size:clamp(1.3rem,2vw,1.7rem);font-weight:500;letter-spacing:.03em;opacity:.85;}
+.hero-copy{position:relative;max-width:820px;margin:0 auto;color:#FFFFFF;text-align:center;--shift:430px;}
+.hero-eyebrow{display:block;font-family:var(--sans);font-size:1.7rem;font-weight:500;letter-spacing:.03em;opacity:.85;}
 .hero-title{
   font-family:var(--display);font-weight:800;
-  font-size:clamp(5rem,12vw,9.5rem);line-height:.95;letter-spacing:-.02em;
+  font-size:9.5rem;line-height:.95;letter-spacing:-.02em;
   margin:10px 0 0;color:#FFFFFF;
 }
 .hero-title sup{font-size:.4em;top:-.8em;}
 .hero-tagline{
-  font-family:var(--thai);font-style:italic;font-size:clamp(1.4rem,2.2vw,1.9rem);
+  font-family:var(--thai);font-style:italic;font-size:1.9rem;
   opacity:.92;margin-top:18px;
 }
 .hero-copy.reveal{
@@ -287,7 +302,7 @@ hr.rule{border:none;border-top:1px solid var(--line);margin:0;}
   .hero-copy.reveal{opacity:1;transform:translateX(calc(-1 * var(--shift)));transition:none;}
 }
 .hero-portrait{
-  position:absolute;right:clamp(20px,19.5vw,320px);top:0;bottom:calc(-1 * clamp(50px,8vw,110px));z-index:1;
+  position:absolute;right:320px;top:0;bottom:-110px;z-index:1;
   display:flex;align-items:flex-end;justify-content:flex-end;
   pointer-events:none;
   transform:translateY(3.5px);
@@ -295,17 +310,4 @@ hr.rule{border:none;border-top:1px solid var(--line);margin:0;}
 .hero-portrait img{
   height:100%;width:auto;display:block;
   filter:var(--grade-photo);
-}
-@media (max-width:1500px){
-  .hero{min-height:0;padding-bottom:0;}
-  .hero-inner{display:block;text-align:center;height:auto;min-height:0;padding:clamp(16px,4vw,28px) clamp(20px,6vw,40px) 8px;}
-  .hero-copy{max-width:none;margin:0;--shift:0px;}
-  .hero-title{font-size:clamp(3.4rem,15vw,5.2rem);}
-  .hero-portrait{
-    position:static;display:flex;justify-content:center;align-items:flex-end;
-    padding:4px 0 0;margin-top:200px;
-  }
-  .hero-portrait img{
-    height:auto;width:min(90vw,420px);max-width:none;display:block;
-  }
 }
