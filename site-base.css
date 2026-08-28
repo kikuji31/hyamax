@@ -266,7 +266,7 @@ hr.rule{border:none;border-top:1px solid var(--line);margin:0;}
   position:relative;width:100%;
   aspect-ratio:1600/760;
   container-type:inline-size;
-  overflow:hidden;
+  overflow:visible;
 }
 .hero-scale{
   position:absolute;top:0;left:50%;
@@ -302,10 +302,11 @@ hr.rule{border:none;border-top:1px solid var(--line);margin:0;}
   .hero-copy.reveal{opacity:1;transform:translateX(calc(-1 * var(--shift)));transition:none;}
 }
 .hero-portrait{
-  position:absolute;right:320px;top:0;bottom:-110px;z-index:1;
+  position:absolute;right:145px;top:0;bottom:-362px;z-index:1;
   display:flex;align-items:flex-end;justify-content:flex-end;
   pointer-events:none;
-  transform:translateY(3.5px);
+  transform:translateY(3.5px) scale(1.18);
+  transform-origin:bottom right;
 }
 .hero-portrait img{
   height:100%;width:auto;display:block;
