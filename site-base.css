@@ -312,12 +312,14 @@ hr.rule{border:none;border-top:1px solid var(--line);margin:0;}
 .hero-portrait img{
   height:100%;width:auto;display:block;
   filter:var(--grade-photo);
-  -webkit-mask-image:linear-gradient(to bottom, #000 0%, #000 82%, transparent 100%);
-  mask-image:linear-gradient(to bottom, #000 0%, #000 82%, transparent 100%);
 }
 /* Below desktop width the section this bleeds onto reflows independently
    (it no longer shrinks in lockstep with the hero), so the overlap grows
    out of proportion. Only shrink the bleed here — desktop is untouched. */
 @media (max-width:900px){
   .hero-portrait{--bleed:-110px;}
+  .hero-portrait img{
+    -webkit-mask-image:linear-gradient(to bottom, #000 0%, #000 82%, transparent 100%);
+    mask-image:linear-gradient(to bottom, #000 0%, #000 82%, transparent 100%);
+  }
 }
