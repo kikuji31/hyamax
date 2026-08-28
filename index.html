@@ -720,7 +720,6 @@
 
 /* ---------- find a clinic ---------- */
 .clinic-head{position:relative;padding-top:6px;}
-.clinic-lattice{position:absolute;top:-30px;right:0;width:280px;height:190px;z-index:0;pointer-events:none;}
 .clinic-title{
   position:relative;z-index:1;
   font-family:var(--display);font-weight:800;letter-spacing:-.02em;line-height:1.02;
@@ -753,7 +752,6 @@
 }
 @media (max-width:560px){
   .clinic-logo-grid{grid-template-columns:repeat(3,1fr);gap:10px;}
-  .clinic-lattice{display:none;}
 }
 
 @media (max-width:640px){
@@ -2016,7 +2014,6 @@ footer{color:var(--paper);padding:56px 0 30px;}
 <section class="band" id="clinics">
   <div class="wrap">
     <div class="clinic-head reveal">
-      <canvas class="clinic-lattice" id="clinicsLattice" aria-hidden="true"></canvas>
       <h2 class="clinic-title en">
         <span class="line1">Find a</span>
         <span class="line2">Clinic</span>
@@ -2341,102 +2338,6 @@ footer{color:var(--paper);padding:56px 0 30px;}
     setupCarousel(track, dots, ci * 450);
   });
 
-  function styleVar(name){
-    return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
-  }
-
-  function setupLattice(canvasId, density){
-    var canvas = document.getElementById(canvasId);
-    if(!canvas) return;
-    var ctx = canvas.getContext("2d");
-    var nodes = [];
-    var w, h, dpr = Math.min(window.devicePixelRatio || 1, 2);
-
-    function resize(){
-      var rect = canvas.parentElement.getBoundingClientRect();
-      w = rect.width; h = rect.height;
-      canvas.width = w * dpr; canvas.height = h * dpr;
-      canvas.style.width = w + "px"; canvas.style.height = h + "px";
-      ctx.setTransform(dpr,0,0,dpr,0,0);
-      buildNodes();
-    }
-
-    function buildNodes(){
-      nodes = [];
-      var cols = Math.max(4, Math.round(w / density));
-      var rows = Math.max(4, Math.round(h / density));
-      for(var i=0;i<=cols;i++){
-        for(var j=0;j<=rows;j++){
-          var jitter = density * 0.36;
-          var x = (i/cols) * w + (Math.random()-0.5)*jitter;
-          var y = (j/rows) * h + (Math.random()-0.5)*jitter;
-          nodes.push({
-            x:x, y:y, baseX:x, baseY:y,
-            phase: Math.random()*Math.PI*2,
-            speed: 0.4 + Math.random()*0.5,
-            amp: density * 0.18,
-            hot: Math.random() < 0.06
-          });
-        }
-      }
-    }
-
-    var maxDist = density * 1.5;
-    var accent = styleVar("--accent");
-    var accentWarm = styleVar("--accent-warm");
-
-    function draw(t){
-      ctx.clearRect(0,0,w,h);
-      var time = t * 0.001;
-      for(var k=0;k<nodes.length;k++){
-        var n = nodes[k];
-        if(!reduceMotion){
-          n.x = n.baseX + Math.cos(time*n.speed + n.phase) * n.amp;
-          n.y = n.baseY + Math.sin(time*n.speed + n.phase) * n.amp;
-        }
-      }
-      ctx.lineWidth = 1;
-      for(var a=0; a<nodes.length; a++){
-        for(var b=a+1; b<nodes.length; b++){
-          var dx = nodes[a].x - nodes[b].x, dy = nodes[a].y - nodes[b].y;
-          var d = Math.sqrt(dx*dx + dy*dy);
-          if(d < maxDist){
-            var op = (1 - d/maxDist) * 0.35;
-            ctx.strokeStyle = accent.trim() ? hexAlpha(accent, op) : "rgba(44,110,94,"+op+")";
-            ctx.beginPath();
-            ctx.moveTo(nodes[a].x, nodes[a].y);
-            ctx.lineTo(nodes[b].x, nodes[b].y);
-            ctx.stroke();
-          }
-        }
-      }
-      for(var m=0;m<nodes.length;m++){
-        var nd = nodes[m];
-        ctx.beginPath();
-        ctx.fillStyle = nd.hot ? accentWarm : accent;
-        ctx.globalAlpha = nd.hot ? 0.9 : 0.55;
-        ctx.arc(nd.x, nd.y, nd.hot ? 2.6 : 1.6, 0, Math.PI*2);
-        ctx.fill();
-        ctx.globalAlpha = 1;
-      }
-      if(!reduceMotion){ requestAnimationFrame(draw); }
-    }
-
-    function hexAlpha(hex, alpha){
-      hex = hex.replace("#","");
-      if(hex.length===3){ hex = hex.split("").map(function(c){return c+c;}).join(""); }
-      var r = parseInt(hex.substring(0,2),16) || 44;
-      var g = parseInt(hex.substring(2,4),16) || 110;
-      var b = parseInt(hex.substring(4,6),16) || 94;
-      return "rgba("+r+","+g+","+b+","+alpha+")";
-    }
-
-    window.addEventListener("resize", resize);
-    resize();
-    requestAnimationFrame(draw);
-  }
-
-  setupLattice("clinicsLattice", 46);
 
   var eventTabs = document.querySelectorAll(".event-tab");
   var eventPanels = document.querySelectorAll("[data-event-panel]");
