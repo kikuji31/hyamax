@@ -266,7 +266,7 @@ hr.rule{border:none;border-top:1px solid var(--line);margin:0;}
   position:relative;width:100%;
   aspect-ratio:1600/760;
   container-type:inline-size;
-  overflow-x:hidden;
+  overflow:hidden;
 }
 .hero-scale{
   position:absolute;top:0;left:50%;
