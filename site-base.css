@@ -132,6 +132,7 @@ p{margin:0;}
 .band-ink{background:var(--ink);color:var(--paper);}
 
 /* section-to-section gradient seams */
+#whatis{background:linear-gradient(180deg, var(--paper), var(--paper-deep)) top / 100% 110px no-repeat, var(--paper-deep);}
 #about{background:linear-gradient(180deg, var(--paper), var(--paper-deep)) top / 100% 110px no-repeat, var(--paper-deep);}
 #strengths{background:linear-gradient(180deg, var(--paper-deep), var(--paper)) top / 100% 110px no-repeat, var(--paper);}
 #products{background:linear-gradient(180deg, var(--paper), var(--paper-deep)) top / 100% 110px no-repeat, var(--paper-deep);}
