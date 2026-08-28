@@ -122,6 +122,102 @@
 .innovation-stat .l{margin-top:8px;color:#3A3A3A;font-size:.84rem;}
 @media (max-width:640px){.innovation-stats{grid-template-columns:repeat(2,1fr);}}
 
+/* ---------- our journey timeline ---------- */
+.journey-band{position:relative;padding:clamp(56px,8vw,96px) 0;background:#EEF3F9;overflow:hidden;}
+.journey-band .journey-bg{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:right center;
+  opacity:.9;pointer-events:none;
+}
+.journey-band .wrap{position:relative;z-index:1;}
+.journey-head{max-width:640px;}
+.journey-eyebrow{
+  display:block;font-family:var(--sans);font-weight:800;letter-spacing:.16em;
+  font-size:.76rem;color:var(--ink-soft);text-transform:uppercase;
+}
+.journey-title{
+  margin-top:10px;font-family:var(--display);font-weight:800;letter-spacing:-.02em;
+  line-height:1.04;font-size:clamp(1.9rem,3.6vw,2.7rem);color:var(--accent);text-transform:uppercase;
+}
+.journey-title em{font-style:normal;color:#C0392B;}
+.journey-sub{margin-top:10px;font-family:var(--sans);font-weight:700;letter-spacing:.04em;font-size:.82rem;color:var(--ink-soft);text-transform:uppercase;}
+.journey-body{position:relative;display:flex;align-items:flex-end;gap:clamp(20px,3vw,32px);margin-top:clamp(56px,7vw,80px);flex-wrap:wrap;}
+.journey-timeline{position:relative;display:flex;flex:1 1 680px;align-items:flex-end;justify-content:space-between;gap:clamp(8px,1.4vw,16px);min-width:0;}
+.journey-timeline::before{
+  content:"";position:absolute;left:0;right:0;bottom:9px;height:2px;
+  background:linear-gradient(90deg,rgba(35,48,91,.06),rgba(35,48,91,.35) 12%,rgba(35,48,91,.35) 88%,rgba(35,48,91,.06));
+}
+.journey-item{position:relative;display:flex;flex-direction:column;align-items:center;flex:1 1 148px;min-width:104px;max-width:170px;}
+.journey-item .card{
+  background:var(--paper-card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-sm);
+  padding:14px 16px;text-align:center;transition:transform .2s ease,box-shadow .2s ease;
+}
+.journey-item .card:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
+.journey-item .yr{font-family:var(--display);font-weight:800;font-size:1.12rem;letter-spacing:-.01em;color:#C0392B;}
+.journey-item .desc{margin-top:6px;font-size:.82rem;line-height:1.45;color:var(--ink-soft);}
+.journey-item .stick{width:2px;background:rgba(35,48,91,.35);margin:14px 0 0;}
+.journey-item .dot{width:11px;height:11px;border-radius:50%;background:var(--paper);border:2px solid #C0392B;flex:none;box-shadow:0 0 0 4px rgba(192,57,43,.12);}
+.journey-item:nth-child(1) .stick{height:16px;}
+.journey-item:nth-child(2) .stick{height:52px;}
+.journey-item:nth-child(3) .stick{height:92px;}
+.journey-item:nth-child(4) .stick{height:132px;}
+.journey-item:nth-child(5) .stick{height:172px;}
+.journey-item:nth-child(6) .stick{height:212px;}
+.journey-quote{
+  flex:0 0 auto;width:min(280px,100%);align-self:center;background:var(--paper-card);border:1px solid var(--line);border-radius:18px;
+  box-shadow:var(--shadow);padding:26px 28px;margin-left:auto;
+}
+.journey-quote-mark{font-family:var(--display);font-size:2rem;color:#C0392B;line-height:.5;display:block;}
+.journey-quote p{margin-top:10px;font-family:var(--display);font-weight:700;font-size:1.12rem;line-height:1.4;color:var(--ink);}
+.journey-quote p b{color:#C0392B;font-weight:800;}
+.journey-quote-mark-end{display:block;text-align:right;}
+@media (max-width:980px){
+  .journey-body{flex-direction:column;align-items:stretch;gap:28px;}
+  .journey-timeline{order:1;overflow-x:auto;padding:4px 4px 16px;}
+  .journey-quote{order:2;width:auto;max-width:none;margin-left:0;}
+}
+@media (max-width:640px){
+  .journey-band .journey-bg{opacity:.3;}
+  .journey-item{flex-basis:124px;min-width:112px;}
+  .journey-item .desc{font-size:.78rem;}
+}
+
+.journey-support-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(20px,3vw,32px);margin-top:clamp(48px,6vw,72px);align-items:stretch;}
+.journey-support-card{
+  background:var(--paper-card);border:1px solid var(--line);border-radius:20px;
+  box-shadow:var(--shadow-sm);padding:clamp(24px,3vw,36px);
+}
+.journey-support-card h3{
+  font-family:var(--display);font-weight:800;letter-spacing:-.01em;font-size:1.22rem;color:var(--accent);
+}
+.uni-logos{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px;}
+.uni-logos figure{margin:0;}
+.uni-logos .logo-tile{
+  aspect-ratio:16/9;border:1px solid var(--line);border-radius:10px;background:#FFFFFF;
+  display:flex;align-items:center;justify-content:center;padding:10px;
+}
+.uni-logos .logo-tile img{max-width:100%;max-height:100%;object-fit:contain;}
+.uni-logos .photo-tile{aspect-ratio:4/3;border-radius:10px;overflow:hidden;margin-top:10px;}
+.uni-logos .photo-tile img{width:100%;height:100%;object-fit:cover;display:block;}
+.journey-support-card p{margin-top:20px;color:var(--ink-soft);font-size:.92rem;line-height:1.7;}
+
+.cert-docs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px;}
+.cert-doc{margin:0;}
+.cert-doc .doc-thumb{
+  aspect-ratio:107/164;border:1px solid var(--line);border-radius:8px;overflow:hidden;
+  background:#FFFFFF;box-shadow:var(--shadow-sm);transition:transform .2s ease,box-shadow .2s ease;
+}
+.cert-doc:hover .doc-thumb{transform:translateY(-4px);box-shadow:var(--shadow);}
+.cert-doc .doc-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+.cert-doc figcaption{margin-top:8px;font-size:.7rem;line-height:1.35;color:var(--ink-soft);text-align:center;}
+@media (max-width:900px){
+  .journey-support-grid{grid-template-columns:1fr;}
+}
+@media (max-width:560px){
+  .uni-logos{grid-template-columns:1fr 1fr 1fr;gap:8px;}
+  .cert-docs{grid-template-columns:repeat(4,1fr);gap:8px;}
+  .cert-doc figcaption{display:none;}
+}
+
 /* ---------- product hero ---------- */
 .product-hero{
   position:relative;padding:clamp(64px,9vw,96px) clamp(20px,5vw,56px) 0;
@@ -639,7 +735,8 @@
   background:var(--paper-card);box-shadow:var(--shadow-sm);transition:transform .2s ease, box-shadow .2s ease;
 }
 .clinic-logo:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
-.clinic-logo img{width:100%;height:100%;object-fit:cover;display:block;}
+.clinic-logo img{width:100%;height:100%;object-fit:contain;display:block;padding:8px;box-sizing:border-box;}
+.clinic-logo-link{display:block;width:100%;height:100%;}
 [data-clinic-page][hidden]{display:none;}
 
 .clinic-pagination{display:flex;justify-content:center;gap:10px;margin-top:clamp(28px,4vw,40px);flex-wrap:wrap;}
@@ -1270,6 +1367,102 @@ footer{color:var(--paper);padding:56px 0 30px;}
   </div>
 </section>
 
+<section class="journey-band">
+  <img class="journey-bg" src="journey-bg.png" alt="" aria-hidden="true">
+  <div class="wrap">
+    <div class="journey-head reveal">
+      <span class="journey-eyebrow">Our Journey</span>
+      <h2 class="journey-title">15+ Years<br>of <em>Innovation</em></h2>
+      <p class="journey-sub">in Hyaluronic Acid Technology</p>
+    </div>
+
+    <div class="journey-body reveal">
+      <div class="journey-timeline">
+        <div class="journey-item">
+          <div class="card"><div class="yr">2011</div><div class="desc">Founded in Geneva, Switzerland</div></div>
+          <div class="stick"></div>
+          <div class="dot"></div>
+        </div>
+        <div class="journey-item">
+          <div class="card"><div class="yr">2012</div><div class="desc">CE Mark &amp; ISO 13485 Certification</div></div>
+          <div class="stick"></div>
+          <div class="dot"></div>
+        </div>
+        <div class="journey-item">
+          <div class="card"><div class="yr">2016</div><div class="desc">Lidocaine Series Product Launched</div></div>
+          <div class="stick"></div>
+          <div class="dot"></div>
+        </div>
+        <div class="journey-item">
+          <div class="card"><div class="yr">2020</div><div class="desc">Monophasic Crosslinked HA Product Launch</div></div>
+          <div class="stick"></div>
+          <div class="dot"></div>
+        </div>
+        <div class="journey-item">
+          <div class="card"><div class="yr">2021</div><div class="desc">Mesotherapy Products Launched</div></div>
+          <div class="stick"></div>
+          <div class="dot"></div>
+        </div>
+        <div class="journey-item">
+          <div class="card"><div class="yr">2023+</div><div class="desc">Over 20+ new products in the pipeline since 2023+</div></div>
+          <div class="stick"></div>
+          <div class="dot"></div>
+        </div>
+      </div>
+
+      <div class="journey-quote">
+        <span class="journey-quote-mark">&ldquo;</span>
+        <p>Innovation is what <b>Hyamax&reg;</b> always insists on.</p>
+        <span class="journey-quote-mark journey-quote-mark-end">&rdquo;</span>
+      </div>
+    </div>
+
+    <div class="journey-support-grid">
+      <div class="journey-support-card reveal">
+        <h3>Hyamed Cooperated Universities</h3>
+        <div class="uni-logos">
+          <figure>
+            <div class="logo-tile"><img src="uni-savoie-logo.png" alt="Universit&eacute; Savoie Mont Blanc"></div>
+            <div class="photo-tile"><img src="uni-savoie-photo.png" alt="Universit&eacute; Savoie Mont Blanc campus"></div>
+          </figure>
+          <figure>
+            <div class="logo-tile"><img src="uni-eclosion-logo.png" alt="Fondation Eclosion, Sciences de la Vie"></div>
+            <div class="photo-tile"><img src="uni-eclosion-photo.png" alt="Fondation Eclosion building"></div>
+          </figure>
+          <figure>
+            <div class="logo-tile"><img src="uni-geneva-logo.png" alt="Universit&eacute; de Gen&egrave;ve"></div>
+            <div class="photo-tile"><img src="uni-geneva-photo.png" alt="Universit&eacute; de Gen&egrave;ve campus"></div>
+          </figure>
+        </div>
+        <p>Since 2011, Hyamed has collaborated with the Universit&eacute; de Gen&egrave;ve, Universit&eacute; Savoie Mont Blanc and Fondation Eclosion &mdash; Sciences de la Vie in Switzerland, working alongside their researchers as key opinion leaders on hyaluronic acid science and leading aesthetic practices.</p>
+      </div>
+
+      <div class="journey-support-card reveal">
+        <h3>CE Certification</h3>
+        <div class="cert-docs">
+          <figure class="cert-doc">
+            <div class="doc-thumb"><img src="ce-cert-bsi-design.png" alt="BSI Certificate &mdash; Design Examination"></div>
+            <figcaption>BSI &mdash; Design Examination</figcaption>
+          </figure>
+          <figure class="cert-doc">
+            <div class="doc-thumb"><img src="ce-cert-bsi-quality.png" alt="BSI Certificate &mdash; Full Quality Assurance"></div>
+            <figcaption>BSI &mdash; Full Quality Assurance</figcaption>
+          </figure>
+          <figure class="cert-doc">
+            <div class="doc-thumb"><img src="ce-cert-ec-design.png" alt="EC Design Examination Certificate"></div>
+            <figcaption>EC &mdash; Design Examination</figcaption>
+          </figure>
+          <figure class="cert-doc">
+            <div class="doc-thumb"><img src="ce-cert-ec-certificate.png" alt="EC Certificate"></div>
+            <figcaption>EC Certificate</figcaption>
+          </figure>
+        </div>
+        <p>Hyamed has obtained CE certification and ISO 13485 since 2012, reflecting its commitment to operating under international quality standards.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="product-hero" id="product-line">
   <div class="product-hero-copy reveal">
     <span class="hero-eyebrow">Program</span>
@@ -1831,95 +2024,94 @@ footer{color:var(--paper);padding:56px 0 30px;}
     </div>
 
     <div class="clinic-logo-grid" data-clinic-page="1">
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_1.jpg" alt="Warinya Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_2.jpg" alt="Waleerat Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_3.jpg" alt="V Square Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_4.jpg" alt="UD Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_5.jpg" alt="Ticha Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_6.jpg" alt="The Sky Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_7.jpg" alt="The Phu Bangkok Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_8.jpg" alt="The Image Medical Aesthetic Centre" loading="lazy"></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/warinyaclinic/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_1.jpg" alt="Warinya Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/waleeratclinic/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_2.jpg" alt="Waleerat Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/VsquareClinic/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_3.jpg" alt="V Square Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/UDClinicratchadasuthisan/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_4.jpg" alt="UD Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/tichaclinic/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_5.jpg" alt="Ticha Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/theskymodernbeauty/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_6.jpg" alt="The Sky Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/thephu.ramintra/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_7.jpg" alt="The Phu Bangkok Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/theimagethailand/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_8.jpg" alt="The Image Medical Aesthetic Centre" loading="lazy"></a></div>
       <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_9.jpg" alt="The Great Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_10.jpg" alt="The Bright Skin" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_11.jpg" alt="Sureenan Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_12.jpg" alt="StarMed Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_13.jpg" alt="SSB Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_14.jpg" alt="Srichinda Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_15.jpg" alt="Space The Ritz" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_16.jpg" alt="Somchai Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_17.jpg" alt="S'mart Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_18.jpg" alt="Shyne Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_19.jpg" alt="Bella Care by Dr.Nopphawan" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_20.jpg" alt="Romrawin" loading="lazy"></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/thebrightskinrama3/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_10.jpg" alt="The Bright Skin" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/sureenanclinic/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_11.jpg" alt="Sureenan Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/StarMedClinic/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_12.jpg" alt="StarMed Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/ssbclinic/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_13.jpg" alt="SSB Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/61580919411879/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_14.jpg" alt="Srichinda Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/SpaceVClinic/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_15.jpg" alt="Space The Ritz" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/somchaiclinic/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_16.jpg" alt="Somchai Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/smartclinic99/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_17.jpg" alt="S'mart Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/SHYNECLINIC/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_18.jpg" alt="Shyne Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/bellacareDr.Nopphawan/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_19.jpg" alt="Bella Care by Dr.Nopphawan" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/RomrawinClinic/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_20.jpg" alt="Romrawin" loading="lazy"></a></div>
       <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_21.jpg" alt="Rayne" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_22.jpg" alt="Rasita Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_23.jpg" alt="Rancha Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_24.jpg" alt="Queensway" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_25.jpg" alt="Puttiphat Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_26.jpg" alt="Ployrada Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_27.jpg" alt="Pista Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_28.jpg" alt="Phyathai Hospital 2" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_29.jpg" alt="Patrawut Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_30.jpg" alt="Patcha Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/RasitaClinicSiam/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_22.jpg" alt="Rasita Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/people/Rancha-clinic-Rayong/61554768894420/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_23.jpg" alt="Rancha Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/QueenswayClinicRama3/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_24.jpg" alt="Queensway" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/puttiphat.khonkaen/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_25.jpg" alt="Puttiphat Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/ployradaclinic" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_26.jpg" alt="Ployrada Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/people/Pista-Clinic-Udonthani-%E0%B8%9E%E0%B8%B4%E0%B8%AA%E0%B8%95%E0%B9%89%E0%B8%B2-%E0%B8%84%E0%B8%A5%E0%B8%B4%E0%B8%99%E0%B8%B4%E0%B8%81-%E0%B8%AD%E0%B8%B8%E0%B8%94%E0%B8%A3%E0%B8%98%E0%B8%B2%E0%B8%99%E0%B8%B5/61557776437027/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_27.jpg" alt="Pista Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/Phyathai2HospitaI/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_28.jpg" alt="Phyathai Hospital 2" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/patrawutclinic/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_29.jpg" alt="Patrawut Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/Patcha.clinic/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_30.jpg" alt="Patcha Clinic" loading="lazy"></a></div>
     </div>
 
     <div class="clinic-logo-grid" data-clinic-page="2" hidden>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_31.jpg" alt="Nitipon Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_32.jpg" alt="Narissa Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_33.jpg" alt="Mousai Wellness Center" loading="lazy"></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/nitiponclinic/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_31.jpg" alt="Nitipon Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/narissaclinic/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_32.jpg" alt="Narissa Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/MousaiWellness/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_33.jpg" alt="Mousai Wellness Center" loading="lazy"></a></div>
       <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_34.jpg" alt="Mirror Clinic" loading="lazy"></div>
       <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_35.jpg" alt="M Line Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_36.jpg" alt="Mhor Jik Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_37.jpg" alt="Mellow Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_38.jpg" alt="Med Design Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/mhorjikclinic/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_36.jpg" alt="Mhor Jik Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/mellowclinic.bkk/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_37.jpg" alt="Mellow Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/MedDesignClinic/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_38.jpg" alt="Med Design Clinic" loading="lazy"></a></div>
       <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_39.jpg" alt="mdi Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_40.jpg" alt="Mabel Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_41.jpg" alt="Partner clinic logo" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_42.jpg" alt="Lelux Official Hospital" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_43.jpg" alt="LBC Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_44.jpg" alt="Laliza Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_45.jpg" alt="La Mong" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_46.jpg" alt="KPS Medical Center" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_47.jpg" alt="Kay Clinic by Dr.Bell" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_48.jpg" alt="Kantima Clinic by Dr.Ern" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_49.jpg" alt="Partner clinic logo" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_50.jpg" alt="Jiin Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_51.jpg" alt="iGlam Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_52.jpg" alt="Gracia The Private Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_53.jpg" alt="GNL Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_54.jpg" alt="G Gangnam Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_55.jpg" alt="Fresh Code" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_56.jpg" alt="First Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/mabelbydr.noot/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_40.jpg" alt="Mabel Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/K2RLuxuryClinic/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_41.jpg" alt="K2R Luxury Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/leluxofficial/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_42.jpg" alt="Lelux Official Hospital" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/lbcclinicbkk/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_43.jpg" alt="LBC Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/lalizaclinic/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_44.jpg" alt="Laliza Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/lamongclinic77/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_45.jpg" alt="La Mong" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/kpsclinicth/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_46.jpg" alt="KPS Medical Center" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/kayhaymorbell/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_47.jpg" alt="Kay Clinic by Dr.Bell" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/kantimaclinic/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_48.jpg" alt="Kantima Clinic by Dr.Ern" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/BangpoHospital/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_49.jpg" alt="Bangpo Hospital" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/JIINCLINICTHAILAND/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_50.jpg" alt="Jiin Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/Iglamclinic/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_51.jpg" alt="iGlam Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/graciatheprivateclinic/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_52.jpg" alt="Gracia The Private Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/GNLClinic/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_53.jpg" alt="GNL Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/gangnamclinic.official/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_54.jpg" alt="G Gangnam Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/FreshCodeClinic/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_55.jpg" alt="Fresh Code" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/firstclinic49/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_56.jpg" alt="First Clinic" loading="lazy"></a></div>
       <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_57.jpg" alt="a+ by Dr.Jady Beauty Hair Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_58.jpg" alt="Zkin" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_59.jpg" alt="Dr. Kong Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_60.jpg" alt="Dr. Kate" loading="lazy"></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/zkinbydoctortony/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_58.jpg" alt="Zkin" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/doctorkongclinic/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_59.jpg" alt="Dr. Kong Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/drkateclinic/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_60.jpg" alt="Dr. Kate" loading="lazy"></a></div>
     </div>
 
     <div class="clinic-logo-grid" data-clinic-page="3" hidden>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_61.jpg" alt="Dr J Clinic Aesthetic & Dermatology" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_62.jpg" alt="a+ by Dr.Jady Beauty Hair Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/61573534119733" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_61.jpg" alt="Dr J Clinic Aesthetic & Dermatology" loading="lazy"></a></div>
       <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_63.jpg" alt="Doo Dee Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_64.jpg" alt="DIO Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_65.jpg" alt="Class Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_66.jpg" alt="Chill Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/dioclinic/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_64.jpg" alt="DIO Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/Classclinicall/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_65.jpg" alt="Class Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/Chillclinic/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_66.jpg" alt="Chill Clinic" loading="lazy"></a></div>
       <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_67.jpg" alt="Chalida Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_68.jpg" alt="Chada Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_69.jpg" alt="Chaba Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_70.jpg" alt="BSC Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_71.jpg" alt="Bella Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_72.jpg" alt="Belkin" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_73.jpg" alt="Believe Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_74.jpg" alt="BDMS" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_75.jpg" alt="BBC Baan Bangna Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_76.jpg" alt="Partner clinic logo" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_77.jpg" alt="Bangkok First Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_78.jpg" alt="Aster Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/CHADACLINIC/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_68.jpg" alt="Chada Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/chabaclinic/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_69.jpg" alt="Chaba Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/bscclinic.rama9/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_70.jpg" alt="BSC Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/BellaClinicBangkok/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_71.jpg" alt="Bella Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/BrlkinClinicRayong/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_72.jpg" alt="Belkin" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/Believeclinic888/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_73.jpg" alt="Believe Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/BDMSBangkokDusitMedicalServices/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_74.jpg" alt="BDMS" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/BBCclinic.Bangna/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_75.jpg" alt="BBC Baan Bangna Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/luminanceclinic/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_76.jpg" alt="Luminance Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/p/Bangkok-First-Clinic-61556848377800/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_77.jpg" alt="Bangkok First Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/asterclinic.th/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_78.jpg" alt="Aster Clinic" loading="lazy"></a></div>
       <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_79.jpg" alt="Artisti9 Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_80.jpg" alt="APEX Medical Center" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_81.jpg" alt="Anutra Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_82.jpg" alt="Aescent Clinic" loading="lazy"></div>
-      <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_83.jpg" alt="Thirty Six Clinic" loading="lazy"></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/ApexProfoundBeauty/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_80.jpg" alt="APEX Medical Center" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/anustaraclinic/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_81.jpg" alt="Anutra Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/aescentclinic/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_82.jpg" alt="Aescent Clinic" loading="lazy"></a></div>
+      <div class="clinic-logo reveal"><a class="clinic-logo-link" href="https://www.facebook.com/36cliniccco/" target="_blank" rel="noopener noreferrer"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_83.jpg" alt="Thirty Six Clinic" loading="lazy"></a></div>
       <div class="clinic-logo reveal"><img src="clinic/optimized/LINE_ALBUM_2026.8.19_260819_84.jpg" alt="2PRAW Clinic" loading="lazy"></div>
     </div>
 
