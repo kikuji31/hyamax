@@ -84,8 +84,8 @@
   pointer-events:none;
 }
 .hyamed-lab-photo figcaption{
-  position:absolute;left:0;right:0;bottom:0;z-index:2;padding:14px clamp(20px,4vw,56px);
-  background:linear-gradient(0deg, rgba(10,14,26,.72), transparent);
+  position:static;z-index:2;padding:14px clamp(20px,4vw,56px);
+  background:#0A0E1A;line-height:1.4;
   color:#FFFFFF;font-family:var(--sans);font-size:.78rem;font-weight:600;
   letter-spacing:.06em;text-transform:uppercase;
 }
@@ -97,7 +97,7 @@
 .hyamed-lab-overlay p:first-child{margin-top:0;}
 .hyamed-lab-overlay strong{color:#141414;}
 @media (max-width:900px){
-  .hyamed-lab-photo::after{display:none;}
+  .hyamed-lab-photo::before,.hyamed-lab-photo::after{display:none;}
   .hyamed-lab-overlay{
     position:static;transform:none;width:auto;line-height:1.6;
     margin:20px clamp(20px,5vw,56px) 0;
@@ -180,7 +180,9 @@
 .journey-quote-mark-end{display:block;text-align:right;}
 @media (max-width:980px){
   .journey-body{flex-direction:column;align-items:stretch;gap:28px;}
-  .journey-timeline{order:1;overflow-x:auto;padding:4px 4px 16px;}
+  .journey-timeline{order:1;width:100%;overflow-x:auto;padding:4px 4px 16px;-ms-overflow-style:none;scrollbar-width:none;}
+  .journey-timeline::-webkit-scrollbar{display:none;}
+  .journey-item .stick{height:16px !important;}
   .journey-quote{order:2;width:auto;max-width:none;margin-left:0;}
 }
 @media (max-width:640px){
@@ -1220,12 +1222,12 @@ footer{color:var(--paper);padding:56px 0 30px;}
 
   <figure class="hyamed-lab-photo reveal" style="margin-bottom:0;">
     <img src="hyamed-lab.jpg" alt="Laboratories Hyamed SA">
+    <figcaption>Laboratories Hyamed SA &mdash; Originating from Switzerland</figcaption>
     <div class="hyamed-lab-overlay">
       <p><strong>Laboratories Hyamed SA</strong> คือบริษัทด้านเวชศาสตร์ความงามจากประเทศสวิตเซอร์แลนด์ ก่อตั้งขึ้นในปี 2011 ณ เมืองเจนีวา ประเทศสวิตเซอร์แลนด์ โดยมุ่งเน้นการวิจัย พัฒนา และผลิตนวัตกรรมสำหรับวงการเวชศาสตร์ความงาม</p>
       <p>ด้วยแนวคิดด้าน ความแม่นยำแบบสวิส คุณภาพ และนวัตกรรมทางวิทยาศาสตร์ HYAMED มุ่งพัฒนาโซลูชันด้านความงามแบบไม่ผ่าตัดที่มีประสิทธิภาพ เพื่อตอบโจทย์ความต้องการที่เปลี่ยนแปลงไปของแพทย์และผู้รับบริการทั่วโลก</p>
       <p>ในปี 2012 HYAMED ได้รับการรับรอง CE และ ISO 13485 สะท้อนถึงความมุ่งมั่นในการดำเนินงานภายใต้มาตรฐานคุณภาพระดับสากล</p>
     </div>
-    <figcaption>Laboratories Hyamed SA &mdash; Originating from Switzerland</figcaption>
   </figure>
 </section>
 
