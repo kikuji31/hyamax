@@ -999,7 +999,8 @@
 }
 
 /* ---------- zones (injection locations) ---------- */
-.zones-image{width:100%;height:auto;display:block;border-radius:var(--radius);}
+.zones-full{margin:0;line-height:0;}
+.zones-full img{width:100%;height:auto;display:block;}
 
 /* ---------- certifications ---------- */
 .cert-grid{display:grid;grid-template-columns:.9fr 1.2fr;gap:clamp(20px,4vw,50px);align-items:stretch;}
@@ -1200,10 +1201,8 @@ footer{color:var(--paper);padding:56px 0 30px;}
 
 <div class="watermark-band" aria-hidden="true"></div>
 
-<section class="band" id="zones">
-  <div class="wrap">
-    <img class="zones-image reveal" src="injection-locations.png" alt="Hyamax injection locations diagram">
-  </div>
+<section class="zones-full" id="zones">
+  <img src="injection-locations.png" alt="Hyamax injection locations diagram">
 </section>
 
 <section class="about-full" id="about">
