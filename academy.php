@@ -1,16 +1,10 @@
+<?php require __DIR__ . '/auth-check.php'; ?>
 <!doctype html>
 <html lang="th">
 <head>
 <meta charset="utf-8" />
 <title>Hyamax Academy</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<script>
-  try{
-    if(localStorage.getItem("hyamaxAcademyAuth") !== "1"){
-      window.location.replace("login.html");
-    }
-  }catch(e){ window.location.replace("login.html"); }
-</script>
 <link rel="stylesheet" href="fonts.css">
 <link rel="stylesheet" href="site-base.css">
 <style>
@@ -72,10 +66,10 @@
       <a href="index.html#product-line">Product</a>
       <a href="index.html#clinics">Find a Clinic</a>
       <a href="index.html#event">EVENT</a>
-      <button type="button" class="btn btn-primary" id="logoutBtnMobile">Logout</button>
+      <a class="btn btn-primary" href="logout.php">Logout</a>
     </nav>
     <div class="nav-cta">
-      <button type="button" class="btn btn-primary" id="logoutBtn">Logout</button>
+      <a class="btn btn-primary" href="logout.php">Logout</a>
       <button class="nav-toggle" id="navToggle" aria-label="เปิดเมนู" aria-expanded="false" aria-controls="navLinks">
         <span></span><span></span><span></span>
       </button>
@@ -93,35 +87,35 @@
 
 <section class="academy-band">
   <div class="academy-grid">
-    <a class="academy-card" href="academy-course.html?course=master-trainer&title=Master%20Trainer">
+    <a class="academy-card" href="academy-course.php?course=master-trainer&title=Master%20Trainer">
       <div class="academy-card-visual" aria-hidden="true"><span class="cloud"></span><span class="hill"></span></div>
       <div class="academy-card-label en">Master Trainer</div>
     </a>
-    <a class="academy-card" href="academy-course.html?course=train-the-trainer&title=Train%20the%20Trainer">
+    <a class="academy-card" href="academy-course.php?course=train-the-trainer&title=Train%20the%20Trainer">
       <div class="academy-card-visual" aria-hidden="true"><span class="cloud"></span><span class="hill"></span></div>
       <div class="academy-card-label en">Train the Trainer</div>
     </a>
-    <a class="academy-card" href="academy-course.html?course=1st-hands-on&title=1st%20Hands-on">
+    <a class="academy-card" href="academy-course.php?course=1st-hands-on&title=1st%20Hands-on">
       <div class="academy-card-visual" aria-hidden="true"><span class="cloud"></span><span class="hill"></span></div>
       <div class="academy-card-label en">1st Hands On</div>
     </a>
-    <a class="academy-card" href="academy-course.html?course=webinar&title=Webinar">
+    <a class="academy-card" href="academy-course.php?course=webinar&title=Webinar">
       <div class="academy-card-visual" aria-hidden="true"><span class="cloud"></span><span class="hill"></span></div>
       <div class="academy-card-label en">Webinar</div>
     </a>
-    <a class="academy-card" href="academy-course.html?course=coming-soon-1&title=Coming%20Soon">
+    <a class="academy-card" href="academy-course.php?course=coming-soon-1&title=Coming%20Soon">
       <div class="academy-card-visual" aria-hidden="true"><span class="cloud"></span><span class="hill"></span></div>
       <div class="academy-card-label en">Coming Soon</div>
     </a>
-    <a class="academy-card" href="academy-course.html?course=coming-soon-2&title=Coming%20Soon">
+    <a class="academy-card" href="academy-course.php?course=coming-soon-2&title=Coming%20Soon">
       <div class="academy-card-visual" aria-hidden="true"><span class="cloud"></span><span class="hill"></span></div>
       <div class="academy-card-label en">Coming Soon</div>
     </a>
-    <a class="academy-card" href="academy-course.html?course=coming-soon-3&title=Coming%20Soon">
+    <a class="academy-card" href="academy-course.php?course=coming-soon-3&title=Coming%20Soon">
       <div class="academy-card-visual" aria-hidden="true"><span class="cloud"></span><span class="hill"></span></div>
       <div class="academy-card-label en">Coming Soon</div>
     </a>
-    <a class="academy-card" href="academy-course.html?course=coming-soon-4&title=Coming%20Soon">
+    <a class="academy-card" href="academy-course.php?course=coming-soon-4&title=Coming%20Soon">
       <div class="academy-card-visual" aria-hidden="true"><span class="cloud"></span><span class="hill"></span></div>
       <div class="academy-card-label en">Coming Soon</div>
     </a>
@@ -131,15 +125,6 @@
 
 <script>
 (function(){
-  function doLogout(){
-    try{ localStorage.removeItem("hyamaxAcademyAuth"); }catch(e){}
-    window.location.href = "login.html";
-  }
-  var logout = document.getElementById("logoutBtn");
-  if(logout){ logout.addEventListener("click", doLogout); }
-  var logoutMobile = document.getElementById("logoutBtnMobile");
-  if(logoutMobile){ logoutMobile.addEventListener("click", doLogout); }
-
   var toggle = document.getElementById("navToggle");
   var links = document.getElementById("navLinks");
   if(toggle && links){

@@ -1,16 +1,10 @@
+<?php require __DIR__ . '/auth-check.php'; ?>
 <!doctype html>
 <html lang="th">
 <head>
 <meta charset="utf-8" />
 <title>Course | Hyamax Academy</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<script>
-  try{
-    if(localStorage.getItem("hyamaxAcademyAuth") !== "1"){
-      window.location.replace("login.html");
-    }
-  }catch(e){ window.location.replace("login.html"); }
-</script>
 <link rel="stylesheet" href="fonts.css">
 <link rel="stylesheet" href="site-base.css">
 <style>
@@ -89,10 +83,10 @@
       <a href="index.html#product-line">Product</a>
       <a href="index.html#clinics">Find a Clinic</a>
       <a href="index.html#event">EVENT</a>
-      <a class="btn btn-primary" href="academy.html">Academy</a>
+      <a class="btn btn-primary" href="academy.php">Academy</a>
     </nav>
     <div class="nav-cta">
-      <a class="btn btn-primary" href="academy.html">Academy</a>
+      <a class="btn btn-primary" href="academy.php">Academy</a>
       <button class="nav-toggle" id="navToggle" aria-label="เปิดเมนู" aria-expanded="false" aria-controls="navLinks">
         <span></span><span></span><span></span>
       </button>
@@ -104,11 +98,11 @@
 <section class="course-band">
   <div class="course-wrap">
     <div class="course-topbar">
-      <a class="course-back" href="academy.html">
+      <a class="course-back" href="academy.php">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
         Back to Academy
       </a>
-      <button type="button" class="academy-logout" id="logoutBtn">Logout</button>
+      <a class="academy-logout" href="logout.php">Logout</a>
     </div>
 
     <h1 class="course-title en" id="courseTitle">Course</h1>
@@ -163,13 +157,6 @@
     });
   });
 
-  var logout = document.getElementById("logoutBtn");
-  if(logout){
-    logout.addEventListener("click", function(){
-      try{ localStorage.removeItem("hyamaxAcademyAuth"); }catch(e){}
-      window.location.href = "login.html";
-    });
-  }
   var toggle = document.getElementById("navToggle");
   var links = document.getElementById("navLinks");
   if(toggle && links){

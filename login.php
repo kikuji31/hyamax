@@ -1,3 +1,35 @@
+<?php
+session_start();
+
+if (!empty($_SESSION['hyamax_academy_auth'])) {
+    header('Location: academy.php');
+    exit;
+}
+
+const AUTH_USER = 'doctor';
+const AUTH_SALT_HEX = '6588f387997c07b7362a872412d37967';
+const AUTH_HASH_HEX = 'a144300f0d0358381d9b069423e51b5dfaf164fcc3224b0d0fca8191dba05fc5';
+const AUTH_ITERATIONS = 100000;
+
+$error = false;
+$submittedUser = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $submittedUser = trim($_POST['username'] ?? '');
+    $password = $_POST['password'] ?? '';
+    $salt = hex2bin(AUTH_SALT_HEX);
+    $computed = hash_pbkdf2('sha256', $password, $salt, AUTH_ITERATIONS, 32, false);
+
+    if ($submittedUser === AUTH_USER && hash_equals(AUTH_HASH_HEX, $computed)) {
+        session_regenerate_id(true);
+        $_SESSION['hyamax_academy_auth'] = true;
+        header('Location: academy.php');
+        exit;
+    }
+
+    $error = true;
+}
+?>
 <!doctype html>
 <html lang="th">
 <head>
@@ -77,10 +109,10 @@
       <a href="index.html#product-line">Product</a>
       <a href="index.html#clinics">Find a Clinic</a>
       <a href="index.html#event">EVENT</a>
-      <a class="btn btn-primary" href="login.html">Login</a>
+      <a class="btn btn-primary" href="login.php">Login</a>
     </nav>
     <div class="nav-cta">
-      <a class="btn btn-primary" href="login.html">Login</a>
+      <a class="btn btn-primary" href="login.php">Login</a>
       <button class="nav-toggle" id="navToggle" aria-label="เปิดเมนู" aria-expanded="false" aria-controls="navLinks">
         <span></span><span></span><span></span>
       </button>
@@ -97,16 +129,16 @@
       <p class="hero-tagline">&ldquo;Swiss Hyaluronic Acid Filler&rdquo;</p>
 
       <div class="login-card-wrap">
-        <form class="login-card" id="loginForm" novalidate>
+        <form class="login-card" id="loginForm" method="post" action="login.php" novalidate>
           <label class="login-field">
             <span>User name</span>
-            <input type="text" name="username" autocomplete="username" required>
+            <input type="text" name="username" autocomplete="username" value="<?= htmlspecialchars($submittedUser) ?>" required>
           </label>
           <label class="login-field">
             <span>Password</span>
             <input type="password" name="password" autocomplete="current-password" required>
           </label>
-          <p class="login-error" id="loginError" hidden>ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง</p>
+          <p class="login-error" id="loginError"<?= $error ? '' : ' hidden' ?>>ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง</p>
           <button type="submit" class="btn login-submit">LOGIN</button>
         </form>
       </div>
@@ -120,27 +152,6 @@
 
 <script>
 (function(){
-  // TODO: replace with the real username/password list provided by the clinic.
-  var CREDENTIALS = [
-    { user: "doctor", pass: "hyamax2026" }
-  ];
-
-  var form = document.getElementById("loginForm");
-  var err = document.getElementById("loginError");
-
-  form.addEventListener("submit", function(e){
-    e.preventDefault();
-    var u = form.username.value.trim();
-    var p = form.password.value;
-    var ok = CREDENTIALS.some(function(c){ return c.user === u && c.pass === p; });
-    if(ok){
-      try{ localStorage.setItem("hyamaxAcademyAuth", "1"); }catch(err){}
-      window.location.href = "academy.html";
-    } else {
-      err.hidden = false;
-    }
-  });
-
   var toggle = document.getElementById("navToggle");
   var links = document.getElementById("navLinks");
   if(toggle && links){
