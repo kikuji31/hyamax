@@ -131,102 +131,8 @@
 @media (max-width:640px){.innovation-stats{grid-template-columns:repeat(2,1fr);}}
 
 /* ---------- our journey timeline ---------- */
-.journey-band{position:relative;padding:clamp(56px,8vw,96px) 0;background:#EEF3F9;overflow:hidden;}
-.journey-band .journey-bg{
-  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:right center;
-  opacity:.9;pointer-events:none;
-}
-.journey-band .wrap{position:relative;z-index:1;}
-.journey-head{max-width:640px;}
-.journey-eyebrow{
-  display:block;font-family:var(--sans);font-weight:800;letter-spacing:.16em;
-  font-size:.76rem;color:var(--ink-soft);text-transform:uppercase;
-}
-.journey-title{
-  margin-top:10px;font-family:var(--display);font-weight:800;letter-spacing:-.02em;
-  line-height:1.04;font-size:clamp(1.9rem,3.6vw,2.7rem);color:var(--accent);text-transform:uppercase;
-}
-.journey-title em{font-style:normal;color:#C0392B;}
-.journey-sub{margin-top:10px;font-family:var(--sans);font-weight:700;letter-spacing:.04em;font-size:.82rem;color:var(--ink-soft);text-transform:uppercase;}
-.journey-body{position:relative;display:flex;align-items:flex-end;gap:clamp(20px,3vw,32px);margin-top:clamp(56px,7vw,80px);flex-wrap:wrap;}
-.journey-timeline{position:relative;display:flex;flex:1 1 680px;align-items:flex-end;justify-content:space-between;gap:clamp(8px,1.4vw,16px);min-width:0;}
-.journey-timeline::before{
-  content:"";position:absolute;left:0;right:0;bottom:9px;height:2px;
-  background:linear-gradient(90deg,rgba(35,48,91,.06),rgba(35,48,91,.35) 12%,rgba(35,48,91,.35) 88%,rgba(35,48,91,.06));
-}
-.journey-item{position:relative;display:flex;flex-direction:column;align-items:center;flex:1 1 148px;min-width:104px;max-width:170px;}
-.journey-item .card{
-  background:var(--paper-card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-sm);
-  padding:14px 16px;text-align:center;transition:transform .2s ease,box-shadow .2s ease;
-}
-.journey-item .card:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
-.journey-item .yr{font-family:var(--display);font-weight:800;font-size:1.12rem;letter-spacing:-.01em;color:#C0392B;}
-.journey-item .desc{margin-top:6px;font-size:.82rem;line-height:1.45;color:var(--ink-soft);}
-.journey-item .stick{width:2px;background:rgba(35,48,91,.35);margin:14px 0 0;}
-.journey-item .dot{width:11px;height:11px;border-radius:50%;background:var(--paper);border:2px solid #C0392B;flex:none;box-shadow:0 0 0 4px rgba(192,57,43,.12);}
-.journey-item:nth-child(1) .stick{height:16px;}
-.journey-item:nth-child(2) .stick{height:52px;}
-.journey-item:nth-child(3) .stick{height:92px;}
-.journey-item:nth-child(4) .stick{height:132px;}
-.journey-item:nth-child(5) .stick{height:172px;}
-.journey-item:nth-child(6) .stick{height:212px;}
-.journey-quote{
-  flex:0 0 auto;width:min(280px,100%);align-self:center;background:var(--paper-card);border:1px solid var(--line);border-radius:18px;
-  box-shadow:var(--shadow);padding:26px 28px;margin-left:auto;
-}
-.journey-quote-mark{font-family:var(--display);font-size:2rem;color:#C0392B;line-height:.5;display:block;}
-.journey-quote p{margin-top:10px;font-family:var(--display);font-weight:700;font-size:1.12rem;line-height:1.4;color:var(--ink);}
-.journey-quote p b{color:#C0392B;font-weight:800;}
-.journey-quote-mark-end{display:block;text-align:right;}
-@media (max-width:980px){
-  .journey-body{flex-direction:column;align-items:stretch;gap:28px;}
-  .journey-timeline{order:1;width:100%;overflow-x:auto;padding:4px 4px 16px;-ms-overflow-style:none;scrollbar-width:none;}
-  .journey-timeline::-webkit-scrollbar{display:none;}
-  .journey-item .stick{height:16px !important;}
-  .journey-quote{order:2;width:auto;max-width:none;margin-left:0;}
-}
-@media (max-width:640px){
-  .journey-band .journey-bg{opacity:.3;}
-  .journey-item{flex-basis:124px;min-width:112px;}
-  .journey-item .desc{font-size:.78rem;}
-}
-
-.journey-support-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(20px,3vw,32px);margin-top:clamp(48px,6vw,72px);align-items:stretch;}
-.journey-support-card{
-  background:var(--paper-card);border:1px solid var(--line);border-radius:20px;
-  box-shadow:var(--shadow-sm);padding:clamp(24px,3vw,36px);
-}
-.journey-support-card h3{
-  font-family:var(--display);font-weight:800;letter-spacing:-.01em;font-size:1.22rem;color:var(--accent);
-}
-.uni-logos{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px;}
-.uni-logos figure{margin:0;}
-.uni-logos .logo-tile{
-  aspect-ratio:16/9;border:1px solid var(--line);border-radius:10px;background:#FFFFFF;
-  display:flex;align-items:center;justify-content:center;padding:10px;
-}
-.uni-logos .logo-tile img{max-width:100%;max-height:100%;object-fit:contain;}
-.uni-logos .photo-tile{aspect-ratio:4/3;border-radius:10px;overflow:hidden;margin-top:10px;}
-.uni-logos .photo-tile img{width:100%;height:100%;object-fit:cover;display:block;}
-.journey-support-card p{margin-top:20px;color:var(--ink-soft);font-size:.92rem;line-height:1.7;}
-
-.cert-docs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px;}
-.cert-doc{margin:0;}
-.cert-doc .doc-thumb{
-  aspect-ratio:107/164;border:1px solid var(--line);border-radius:8px;overflow:hidden;
-  background:#FFFFFF;box-shadow:var(--shadow-sm);transition:transform .2s ease,box-shadow .2s ease;
-}
-.cert-doc:hover .doc-thumb{transform:translateY(-4px);box-shadow:var(--shadow);}
-.cert-doc .doc-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
-.cert-doc figcaption{margin-top:8px;font-size:.7rem;line-height:1.35;color:var(--ink-soft);text-align:center;}
-@media (max-width:900px){
-  .journey-support-grid{grid-template-columns:1fr;}
-}
-@media (max-width:560px){
-  .uni-logos{grid-template-columns:1fr 1fr 1fr;gap:8px;}
-  .cert-docs{grid-template-columns:repeat(4,1fr);gap:8px;}
-  .cert-doc figcaption{display:none;}
-}
+.journey-full{margin:0;line-height:0;}
+.journey-full img{width:100%;height:auto;display:block;}
 
 /* ---------- product hero ---------- */
 .product-hero{
@@ -235,6 +141,9 @@
   text-align:center;
 }
 .product-hero-copy{max-width:min(820px,86vw);margin:0 auto;color:#FFFFFF;}
+.product-hero-copy .hero-eyebrow{font-size:min(1.7rem,1.7vw + .6rem);}
+.product-hero-copy .hero-title{font-size:min(9.5rem,9.5vw + 1rem);}
+.product-hero-copy .hero-tagline{font-size:min(1.9rem,1.9vw + .7rem);}
 .product-hero-visual{position:relative;max-width:1180px;margin:clamp(36px,5vw,56px) auto 0;}
 .product-hero-visual img{width:100%;height:auto;display:block;}
 
@@ -781,82 +690,8 @@
 }
 
 /* ---------- crosslinking technology ---------- */
-.cl-frame{
-  position:relative;width:100%;aspect-ratio:3586/2019;
-  overflow:hidden;font-family:var(--thai);
-}
-.cl-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
-.cl-frame > div{position:absolute;}
-.cl-header{left:2.5%;top:4%;width:45%;}
-.cl-header h2{
-  font-family:var(--display);font-weight:800;letter-spacing:-.01em;color:#141414;
-  font-size:clamp(1.4rem,3.2vw,2.5rem);line-height:1.15;
-  border-bottom:3px solid #C0392B;padding-bottom:clamp(8px,1.2vw,14px);display:inline-block;
-}
-.cl-header h2 .cl-brand{color:#C0392B;}
-.cl-header p{margin-top:clamp(8px,1.4vw,16px);color:#3A3A3A;font-size:clamp(.8rem,1.4vw,1.15rem);line-height:1.55;}
-.cl-quote{
-  left:65.5%;top:10.5%;width:31%;height:33%;
-  display:flex;flex-direction:column;justify-content:center;
-  padding:clamp(10px,1.6vw,20px) clamp(14px,2vw,24px);box-sizing:border-box;
-}
-.cl-quote-mark{font-family:var(--display);font-size:clamp(1.6rem,3.4vw,2.6rem);color:#C0392B;line-height:.6;}
-.cl-quote-mark-end{align-self:flex-end;}
-.cl-quote p{font-weight:600;color:#1c1c1c;font-size:clamp(.85rem,1.5vw,1.3rem);line-height:1.4;margin:6px 0;}
-.cl-compare{left:2.5%;top:47%;width:46%;height:44%;padding:clamp(10px,1.6vw,20px) clamp(12px,2vw,24px);box-sizing:border-box;display:flex;flex-direction:column;}
-.cl-compare-title{
-  font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:.02em;
-  font-size:clamp(.6rem,1.05vw,.88rem);color:#141414;margin-bottom:clamp(4px,.8vw,10px);
-}
-.cl-legend{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(6px,1.2vw,16px);}
-.cl-legend > span{display:flex;align-items:flex-start;gap:5px;}
-.cl-legend i{display:inline-block;width:.9em;height:3px;margin-top:.55em;flex:none;}
-.cl-legend-text{display:flex;flex-direction:column;}
-.cl-legend-text b{font-weight:700;color:#222;font-size:clamp(.42rem,.76vw,.66rem);line-height:1.25;}
-.cl-legend-text small{margin-top:2px;font-weight:500;color:#555;font-size:clamp(.36rem,.64vw,.56rem);line-height:1.3;}
-.cl-diagrams{display:flex;gap:clamp(6px,1.2vw,16px);margin-top:clamp(6px,1.2vw,14px);flex:1;}
-.cl-diagram{flex:1;padding:clamp(6px,1vw,12px);display:flex;flex-direction:column;}
-.cl-diagram-label{font-size:clamp(.55rem,.95vw,.85rem);font-weight:800;text-align:center;color:#141414;letter-spacing:.02em;}
-.cl-diagram-art{
-  flex:1;width:100%;margin-top:6px;border-radius:6px;min-height:0;
-  object-fit:contain;display:block;
-}
-.cl-diagram p{margin-top:6px;font-size:clamp(.5rem,.85vw,.76rem);color:#555;text-align:center;line-height:1.35;}
-.cl-callout{
-  left:50.5%;top:47%;width:20%;height:44%;padding:clamp(10px,1.6vw,18px);box-sizing:border-box;
-  display:flex;flex-direction:column;align-items:flex-start;justify-content:center;
-}
-.cl-callout p{font-family:var(--display);font-weight:800;font-size:clamp(.75rem,1.5vw,1.25rem);line-height:1.2;color:#141414;margin:0;}
-.cl-callout-line1 span, .cl-callout-line2 span{color:#C0392B;}
-.cl-callout-rule{width:34%;height:3px;background:#C0392B;margin:clamp(6px,1.2vw,14px) 0;}
-.cl-features{left:73%;top:47%;width:24.5%;height:44%;display:flex;flex-direction:column;gap:clamp(4px,1vw,10px);}
-.cl-feature{
-  flex:1;padding:clamp(5px,1vw,12px) clamp(8px,1.3vw,14px);
-  display:flex;align-items:center;gap:clamp(6px,1vw,12px);
-}
-.cl-feature svg{width:clamp(18px,2.8vw,32px);height:clamp(18px,2.8vw,32px);color:#23305B;flex:none;}
-.cl-feature p{font-size:clamp(.5rem,.9vw,.82rem);line-height:1.35;color:#333;margin:0;}
-.cl-feature strong{display:block;color:#141414;font-size:clamp(.55rem,.98vw,.9rem);margin-bottom:2px;}
-.cl-strip{
-  left:0;top:92.5%;width:100%;height:7.5%;
-  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:clamp(20px,4vw,64px);
-  border-top:1px solid rgba(20,20,20,.12);
-}
-.cl-strip span{font-size:clamp(.62rem,1.1vw,1rem);font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#3A3A3A;}
-@media (max-width:900px){
-  .cl-frame{aspect-ratio:auto;border-radius:0;}
-  .cl-bg{display:none;}
-  .cl-frame > div{
-    position:static;width:auto;height:auto;padding:0;
-    margin:0 0 clamp(24px,5vw,32px);text-align:center;
-  }
-  .cl-header, .cl-quote{margin-bottom:clamp(24px,5vw,32px);}
-  .cl-quote{align-items:center;}
-  .cl-callout{align-items:center;}
-  .cl-callout-rule{margin-left:auto;margin-right:auto;}
-  .cl-diagrams{flex-direction:column;}
-  .cl-strip{border-top:none;padding-top:0;flex-direction:column;text-align:center;gap:10px;}
-}
+.crosslink-full{margin:0;line-height:0;}
+.crosslink-full img{width:100%;height:auto;display:block;}
 
 /* ---------- advantages ---------- */
 .advantages{position:relative;aspect-ratio:2903/1632;display:flex;align-items:flex-start;padding-top:clamp(56px,9vw,110px);box-sizing:border-box;}
@@ -1258,100 +1093,8 @@ footer{color:var(--paper);padding:56px 0 30px;}
   </div>
 </section>
 
-<section class="journey-band">
-  <img class="journey-bg" src="journey-bg.png" alt="" aria-hidden="true">
-  <div class="wrap">
-    <div class="journey-head reveal">
-      <span class="journey-eyebrow">Our Journey</span>
-      <h2 class="journey-title">15+ Years<br>of <em>Innovation</em></h2>
-      <p class="journey-sub">in Hyaluronic Acid Technology</p>
-    </div>
-
-    <div class="journey-body reveal">
-      <div class="journey-timeline">
-        <div class="journey-item">
-          <div class="card"><div class="yr">2011</div><div class="desc">Founded in Geneva, Switzerland</div></div>
-          <div class="stick"></div>
-          <div class="dot"></div>
-        </div>
-        <div class="journey-item">
-          <div class="card"><div class="yr">2012</div><div class="desc">CE Mark &amp; ISO 13485 Certification</div></div>
-          <div class="stick"></div>
-          <div class="dot"></div>
-        </div>
-        <div class="journey-item">
-          <div class="card"><div class="yr">2016</div><div class="desc">Lidocaine Series Product Launched</div></div>
-          <div class="stick"></div>
-          <div class="dot"></div>
-        </div>
-        <div class="journey-item">
-          <div class="card"><div class="yr">2020</div><div class="desc">Monophasic Crosslinked HA Product Launch</div></div>
-          <div class="stick"></div>
-          <div class="dot"></div>
-        </div>
-        <div class="journey-item">
-          <div class="card"><div class="yr">2021</div><div class="desc">Mesotherapy Products Launched</div></div>
-          <div class="stick"></div>
-          <div class="dot"></div>
-        </div>
-        <div class="journey-item">
-          <div class="card"><div class="yr">2023+</div><div class="desc">Over 20+ new products in the pipeline since 2023+</div></div>
-          <div class="stick"></div>
-          <div class="dot"></div>
-        </div>
-      </div>
-
-      <div class="journey-quote">
-        <span class="journey-quote-mark">&ldquo;</span>
-        <p>Innovation is what <b>Hyamax&reg;</b> always insists on.</p>
-        <span class="journey-quote-mark journey-quote-mark-end">&rdquo;</span>
-      </div>
-    </div>
-
-    <div class="journey-support-grid">
-      <div class="journey-support-card reveal">
-        <h3>Hyamed Cooperated Universities</h3>
-        <div class="uni-logos">
-          <figure>
-            <div class="logo-tile"><img src="uni-savoie-logo.png" alt="Universit&eacute; Savoie Mont Blanc"></div>
-            <div class="photo-tile"><img src="uni-savoie-photo.png" alt="Universit&eacute; Savoie Mont Blanc campus"></div>
-          </figure>
-          <figure>
-            <div class="logo-tile"><img src="uni-eclosion-logo.png" alt="Fondation Eclosion, Sciences de la Vie"></div>
-            <div class="photo-tile"><img src="uni-eclosion-photo.png" alt="Fondation Eclosion building"></div>
-          </figure>
-          <figure>
-            <div class="logo-tile"><img src="uni-geneva-logo.png" alt="Universit&eacute; de Gen&egrave;ve"></div>
-            <div class="photo-tile"><img src="uni-geneva-photo.png" alt="Universit&eacute; de Gen&egrave;ve campus"></div>
-          </figure>
-        </div>
-        <p>Since 2011, Hyamed has collaborated with the Universit&eacute; de Gen&egrave;ve, Universit&eacute; Savoie Mont Blanc and Fondation Eclosion &mdash; Sciences de la Vie in Switzerland, working alongside their researchers as key opinion leaders on hyaluronic acid science and leading aesthetic practices.</p>
-      </div>
-
-      <div class="journey-support-card reveal">
-        <h3>CE Certification</h3>
-        <div class="cert-docs">
-          <figure class="cert-doc">
-            <div class="doc-thumb"><img src="ce-cert-bsi-design.png" alt="BSI Certificate &mdash; Design Examination"></div>
-            <figcaption>BSI &mdash; Design Examination</figcaption>
-          </figure>
-          <figure class="cert-doc">
-            <div class="doc-thumb"><img src="ce-cert-bsi-quality.png" alt="BSI Certificate &mdash; Full Quality Assurance"></div>
-            <figcaption>BSI &mdash; Full Quality Assurance</figcaption>
-          </figure>
-          <figure class="cert-doc">
-            <div class="doc-thumb"><img src="ce-cert-ec-design.png" alt="EC Design Examination Certificate"></div>
-            <figcaption>EC &mdash; Design Examination</figcaption>
-          </figure>
-          <figure class="cert-doc">
-            <div class="doc-thumb"><img src="ce-cert-ec-certificate.png" alt="EC Certificate"></div>
-            <figcaption>EC Certificate</figcaption>
-          </figure>
-        </div>
-        <p>Hyamed has obtained CE certification and ISO 13485 since 2012, reflecting its commitment to operating under international quality standards.</p>
-      </div>
-    </div>
-  </div>
+<section class="journey-full">
+  <img src="our-journey.jpg" alt="Our Journey: 15+ years of innovation in hyaluronic acid technology, timeline from 2011 to 2023+, Hyamed cooperated universities, and CE certification">
 </section>
 
 <section class="product-hero" id="product-line">
@@ -1369,79 +1112,8 @@ footer{color:var(--paper);padding:56px 0 30px;}
   </div>
 </section>
 
-<section id="crosslink">
-  <div class="cl-frame reveal">
-    <img class="cl-bg" src="crosslink-bg.jpg" alt="" aria-hidden="true">
-
-    <div class="cl-header">
-        <h2><span class="cl-brand">HYAMAX&reg;</span><br>Crosslinking Technology</h2>
-        <p>สูตรเฉพาะและเทคโนโลยี Crosslinking ที่ได้รับจดสิทธิบัตรของเรา ช่วยสร้างเจลที่มีความหนืดสูง แต่ยังคงยืดได้อย่างลื่นไหล และสามารถปรับตัวเข้ากับการเคลื่อนไหวของใบหน้าได้อย่างเป็นธรรมชาติ</p>
-      </div>
-
-      <div class="cl-quote">
-        <span class="cl-quote-mark">&ldquo;</span>
-        <p>Hyamax&rsquo;s unique hyaluronic acid formula naturally adapts to facial dynamics.</p>
-        <span class="cl-quote-mark cl-quote-mark-end">&rdquo;</span>
-      </div>
-
-      <div class="cl-compare">
-        <div class="cl-compare-title">Cross-linking Comparison</div>
-        <div class="cl-legend">
-          <span>
-            <i style="background:#C0392B"></i>
-            <span class="cl-legend-text"><b>Invalid Crosslink</b><small>การเชื่อมโยงที่ไม่มีประสิทธิภาพ (เชื่อมต่อเพียงด้านเดียว)</small></span>
-          </span>
-          <span>
-            <i style="background:#2E8B57"></i>
-            <span class="cl-legend-text"><b>Effective Cross-Linking</b><small>การเชื่อมโยงที่มีประสิทธิภาพ (การเชื่อมโยงระหว่างโมเลกุล)</small></span>
-          </span>
-          <span>
-            <i style="background:#D4A017"></i>
-            <span class="cl-legend-text"><b>Winding Cross-Linked Bond</b><small>พันธะ Cross-Link ที่เกิดการพันตัว (การเชื่อมต่อภายในโมเลกุล)</small></span>
-          </span>
-        </div>
-        <div class="cl-diagrams">
-          <div class="cl-diagram">
-            <div class="cl-diagram-label">Other HA Fillers</div>
-            <img class="cl-diagram-art" src="cl-diagram-other.png" alt="Other HA fillers - invalid and winding crosslinking pattern">
-            <p>สายพันธะ HA แบบไม่มีประสิทธิภาพ (เชื่อมต่อแบบสุ่ม)</p>
-          </div>
-          <div class="cl-diagram">
-            <div class="cl-diagram-label">Hyamax&reg; Cross-Linking</div>
-            <img class="cl-diagram-art" src="cl-diagram-hyamax.png" alt="Hyamax cross-linking technology - effective crosslinking pattern">
-            <p>เทคโนโลยี Cross-linking ของ HYAMAX&reg; ที่มีประสิทธิภาพสูง</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="cl-callout">
-        <p class="cl-callout-line1">SPECIAL<br><span>CROSSLINKING<br>TECHNOLOGY</span></p>
-        <span class="cl-callout-rule"></span>
-        <p class="cl-callout-line2">REDUCED<br><span>BDDE NEEDS</span></p>
-      </div>
-
-      <div class="cl-features">
-        <div class="cl-feature">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="2.2"/><circle cx="18" cy="6" r="2.2"/><circle cx="12" cy="18" r="2.2"/><path d="M7.7 7.3 10.5 16M16.3 7.3 13.5 16M8 6h8"/></svg>
-          <p><strong>Reduced invalid cross-linking and winding cross-linking bonds</strong><br>ลดอัตรา Cross-Link ที่ไม่มีประสิทธิภาพ และพันธะที่เกาะการพันตัว</p>
-        </div>
-        <div class="cl-feature">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="2.2"/><circle cx="18" cy="6" r="2.2"/><circle cx="12" cy="18" r="2.2"/><path d="M7.7 7.3 10.5 16M16.3 7.3 13.5 16M8 6h8"/></svg>
-          <p><strong>Maximize Crosslinking Efficiency</strong><br>เพิ่มประสิทธิภาพของกระบวนการ Crosslinking</p>
-        </div>
-        <div class="cl-feature">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="2.2"/><circle cx="18" cy="6" r="2.2"/><circle cx="12" cy="18" r="2.2"/><path d="M7.7 7.3 10.5 16M16.3 7.3 13.5 16M8 6h8"/></svg>
-          <p><strong>Lower residue of BDDE and higher product safety</strong><br>ลดปริมาณ BDDE ตกค้าง เพื่อเพิ่มความปลอดภัย</p>
-        </div>
-      </div>
-
-      <div class="cl-strip">
-        <span>Smooth Injection</span>
-        <span>Natural Integration</span>
-        <span>Long-lasting Results</span>
-        <span>High Safety Profile</span>
-      </div>
-    </div>
+<section class="crosslink-full" id="crosslink">
+  <img src="crosslinking-technology.webp" alt="Hyamax Crosslinking Technology: special patented crosslinking formula, cross-linking comparison versus other HA fillers, reduced BDDE needs, smooth injection, natural integration, long-lasting results, high safety profile">
 </section>
 
 <section class="advantages">
