@@ -1,16 +1,22 @@
 <?php
 require __DIR__ . '/session.php';
 require __DIR__ . '/login-throttle.php';
+require __DIR__ . '/academy-users.php';
 
 if (!empty($_SESSION['hyamax_academy_auth'])) {
     header('Location: academy.php');
     exit;
 }
 
-const AUTH_USER = 'doctor';
-const AUTH_SALT_HEX = '6588f387997c07b7362a872412d37967';
-const AUTH_HASH_HEX = 'a144300f0d0358381d9b069423e51b5dfaf164fcc3224b0d0fca8191dba05fc5';
-const AUTH_ITERATIONS = 100000;
+/** ตรวจรหัสผ่าน — ถ้าไม่มี username นี้ก็ยังคำนวณ hash ให้ใช้เวลาเท่ากัน เพื่อไม่ให้เดาได้ว่ามี user ไหนบ้าง */
+function academy_verify(string $username, string $password): bool
+{
+    $user = ACADEMY_USERS[$username] ?? null;
+    $salt = hex2bin($user['salt'] ?? str_repeat('0', 32));
+    // ความยาว 64 = ตัวอักษร hex (32 ไบต์) เพราะ raw_output = false
+    $computed = hash_pbkdf2('sha256', $password, $salt, ACADEMY_PBKDF2_ITERATIONS, 64, false);
+    return $user !== null && hash_equals($user['hash'], $computed);
+}
 
 $error = false;
 $lockedMinutes = 0;
@@ -24,13 +30,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($lockedSeconds > 0) {
         $lockedMinutes = (int)ceil($lockedSeconds / 60);
     } else {
-        $salt = hex2bin(AUTH_SALT_HEX);
-        $computed = hash_pbkdf2('sha256', $password, $salt, AUTH_ITERATIONS, 32, false);
-
-        if ($submittedUser === AUTH_USER && hash_equals(AUTH_HASH_HEX, $computed)) {
+        if (academy_verify($submittedUser, $password)) {
             throttle_reset();
             session_regenerate_id(true);
             $_SESSION['hyamax_academy_auth'] = true;
+            $_SESSION['hyamax_academy_user'] = $submittedUser;
             header('Location: academy.php');
             exit;
         }
