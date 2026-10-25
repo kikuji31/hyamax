@@ -1,5 +1,6 @@
 <?php
-session_start();
+require __DIR__ . '/session.php';
+require __DIR__ . '/login-throttle.php';
 
 if (!empty($_SESSION['hyamax_academy_auth'])) {
     header('Location: academy.php');
@@ -12,22 +13,36 @@ const AUTH_HASH_HEX = 'a144300f0d0358381d9b069423e51b5dfaf164fcc3224b0d0fca8191d
 const AUTH_ITERATIONS = 100000;
 
 $error = false;
+$lockedMinutes = 0;
 $submittedUser = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $submittedUser = trim($_POST['username'] ?? '');
-    $password = $_POST['password'] ?? '';
-    $salt = hex2bin(AUTH_SALT_HEX);
-    $computed = hash_pbkdf2('sha256', $password, $salt, AUTH_ITERATIONS, 32, false);
+    $submittedUser = is_string($_POST['username'] ?? null) ? trim($_POST['username']) : '';
+    $password = is_string($_POST['password'] ?? null) ? $_POST['password'] : '';
 
-    if ($submittedUser === AUTH_USER && hash_equals(AUTH_HASH_HEX, $computed)) {
-        session_regenerate_id(true);
-        $_SESSION['hyamax_academy_auth'] = true;
-        header('Location: academy.php');
-        exit;
+    $lockedSeconds = throttle_seconds_left();
+    if ($lockedSeconds > 0) {
+        $lockedMinutes = (int)ceil($lockedSeconds / 60);
+    } else {
+        $salt = hex2bin(AUTH_SALT_HEX);
+        $computed = hash_pbkdf2('sha256', $password, $salt, AUTH_ITERATIONS, 32, false);
+
+        if ($submittedUser === AUTH_USER && hash_equals(AUTH_HASH_HEX, $computed)) {
+            throttle_reset();
+            session_regenerate_id(true);
+            $_SESSION['hyamax_academy_auth'] = true;
+            header('Location: academy.php');
+            exit;
+        }
+
+        throttle_record_failure();
+        $lockedSeconds = throttle_seconds_left();
+        if ($lockedSeconds > 0) {
+            $lockedMinutes = (int)ceil($lockedSeconds / 60);
+        } else {
+            $error = true;
+        }
     }
-
-    $error = true;
 }
 ?>
 <!doctype html>
@@ -138,14 +153,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <span>Password</span>
             <input type="password" name="password" autocomplete="current-password" required>
           </label>
-          <p class="login-error" id="loginError"<?= $error ? '' : ' hidden' ?>>ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง</p>
+<?php if ($lockedMinutes > 0): ?>
+          <p class="login-error" id="loginError" role="alert">ใส่รหัสผิดหลายครั้งเกินไป กรุณาลองใหม่ในอีก <?= $lockedMinutes ?> นาที</p>
+<?php else: ?>
+          <p class="login-error" id="loginError"<?= $error ? ' role="alert"' : ' hidden' ?>>ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง</p>
+<?php endif; ?>
           <button type="submit" class="btn login-submit">LOGIN</button>
         </form>
       </div>
     </div>
   </div>
   <div class="hero-portrait">
-    <img src="HYAMAX-white.png" alt="Hyamax model" onerror="this.style.display='none'">
+    <img src="HYAMAX-white-web.png" alt="Hyamax model" onerror="this.style.display='none'">
   </div>
 </section>
 </main>

@@ -1,4 +1,7 @@
-<?php require __DIR__ . '/auth-check.php'; ?>
+<?php
+require __DIR__ . '/auth-check.php';
+require __DIR__ . '/academy-courses.php';
+?>
 <!doctype html>
 <html lang="th">
 <head>
@@ -34,6 +37,8 @@
   transition:transform .2s ease;
 }
 .academy-card:hover .academy-card-visual{transform:translateY(-4px);}
+.academy-card.is-soon{cursor:default;opacity:.55;}
+.academy-card.is-soon:hover .academy-card-visual{transform:none;}
 .academy-card-visual .cloud{position:absolute;top:18%;left:50%;transform:translateX(-50%);width:70%;height:34%;}
 .academy-card-visual .cloud::before,.academy-card-visual .cloud::after{content:'';position:absolute;background:#FFFFFF;border-radius:50%;}
 .academy-card-visual .cloud::before{width:62%;height:100%;left:0;top:20%;}
@@ -87,38 +92,19 @@
 
 <section class="academy-band">
   <div class="academy-grid">
-    <a class="academy-card" href="academy-course.php?course=master-trainer&title=Master%20Trainer">
+<?php foreach (ACADEMY_COURSES as $slug => $c):
+    $label = htmlspecialchars($c['title'], ENT_QUOTES, 'UTF-8');
+    if ($c['videos']): ?>
+    <a class="academy-card" href="academy-course.php?course=<?= urlencode($slug) ?>">
       <div class="academy-card-visual" aria-hidden="true"><span class="cloud"></span><span class="hill"></span></div>
-      <div class="academy-card-label en">Master Trainer</div>
+      <div class="academy-card-label en"><?= $label ?></div>
     </a>
-    <a class="academy-card" href="academy-course.php?course=train-the-trainer&title=Train%20the%20Trainer">
+<?php else: ?>
+    <div class="academy-card is-soon" aria-disabled="true">
       <div class="academy-card-visual" aria-hidden="true"><span class="cloud"></span><span class="hill"></span></div>
-      <div class="academy-card-label en">Train the Trainer</div>
-    </a>
-    <a class="academy-card" href="academy-course.php?course=1st-hands-on&title=1st%20Hands-on">
-      <div class="academy-card-visual" aria-hidden="true"><span class="cloud"></span><span class="hill"></span></div>
-      <div class="academy-card-label en">1st Hands On</div>
-    </a>
-    <a class="academy-card" href="academy-course.php?course=webinar&title=Webinar">
-      <div class="academy-card-visual" aria-hidden="true"><span class="cloud"></span><span class="hill"></span></div>
-      <div class="academy-card-label en">Webinar</div>
-    </a>
-    <a class="academy-card" href="academy-course.php?course=coming-soon-1&title=Coming%20Soon">
-      <div class="academy-card-visual" aria-hidden="true"><span class="cloud"></span><span class="hill"></span></div>
-      <div class="academy-card-label en">Coming Soon</div>
-    </a>
-    <a class="academy-card" href="academy-course.php?course=coming-soon-2&title=Coming%20Soon">
-      <div class="academy-card-visual" aria-hidden="true"><span class="cloud"></span><span class="hill"></span></div>
-      <div class="academy-card-label en">Coming Soon</div>
-    </a>
-    <a class="academy-card" href="academy-course.php?course=coming-soon-3&title=Coming%20Soon">
-      <div class="academy-card-visual" aria-hidden="true"><span class="cloud"></span><span class="hill"></span></div>
-      <div class="academy-card-label en">Coming Soon</div>
-    </a>
-    <a class="academy-card" href="academy-course.php?course=coming-soon-4&title=Coming%20Soon">
-      <div class="academy-card-visual" aria-hidden="true"><span class="cloud"></span><span class="hill"></span></div>
-      <div class="academy-card-label en">Coming Soon</div>
-    </a>
+      <div class="academy-card-label en"><?= $label ?></div>
+    </div>
+<?php endif; endforeach; ?>
   </div>
 </section>
 </main>

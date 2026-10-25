@@ -1,9 +1,22 @@
-<?php require __DIR__ . '/auth-check.php'; ?>
+<?php
+require __DIR__ . '/auth-check.php';
+require __DIR__ . '/academy-courses.php';
+
+$slug = $_GET['course'] ?? '';
+if (!is_string($slug) || !array_key_exists($slug, ACADEMY_COURSES)) {
+    header('Location: academy.php');
+    exit;
+}
+$course = ACADEMY_COURSES[$slug];
+$videos = $course['videos'];
+
+function e($s) { return htmlspecialchars($s, ENT_QUOTES, 'UTF-8'); }
+?>
 <!doctype html>
 <html lang="th">
 <head>
 <meta charset="utf-8" />
-<title>Course | Hyamax Academy</title>
+<title><?= e($course['title']) ?> | Hyamax Academy</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet" href="fonts.css">
 <link rel="stylesheet" href="site-base.css">
@@ -62,6 +75,40 @@
   font-size:clamp(1.5rem,3.4vw,2.6rem);line-height:1.05;color:#FFFFFF;
 }
 
+.video-soon{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.35);
+}
+.video-soon span{
+  font-family:var(--sans);font-weight:800;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;
+  color:#FFFFFF;border:1px solid rgba(255,255,255,.7);border-radius:999px;padding:10px 20px;
+}
+.course-empty{
+  border:1px dashed rgba(255,255,255,.45);border-radius:16px;
+  padding:clamp(40px,7vw,72px) 24px;text-align:center;
+}
+.course-empty p{font-family:var(--thai);font-size:1.05rem;color:rgba(255,255,255,.85);}
+.course-empty a{
+  display:inline-block;margin-top:20px;font-family:var(--sans);font-weight:700;font-size:.85rem;
+  color:#FFFFFF;border:1px solid rgba(255,255,255,.6);border-radius:999px;padding:10px 22px;text-decoration:none;
+}
+.course-empty a:hover{background:rgba(255,255,255,.12);}
+
+.video-modal{
+  width:min(1100px,94vw);max-width:none;padding:0;border:none;border-radius:14px;
+  background:#000000;overflow:visible;
+}
+.video-modal::backdrop{background:rgba(0,0,0,.82);}
+.video-modal-frame{position:relative;aspect-ratio:16/9;}
+.video-modal-frame iframe,.video-modal-frame video{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:14px;background:#000000;}
+.video-modal-close{
+  position:absolute;top:-46px;right:0;width:38px;height:38px;border-radius:50%;
+  border:none;background:rgba(255,255,255,.18);color:#FFFFFF;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+}
+.video-modal-close:hover{background:rgba(255,255,255,.32);}
+.video-modal-close svg{width:18px;height:18px;}
+
 @media (max-width:700px){
   .video-block-inner{flex-direction:column;}
   .video-block.reverse .video-block-inner{flex-direction:column;}
@@ -105,57 +152,99 @@
       <a class="academy-logout" href="logout.php">Logout</a>
     </div>
 
-    <h1 class="course-title en" id="courseTitle">Course</h1>
+    <h1 class="course-title en"><?= e($course['title']) ?></h1>
 
-    <div class="video-block">
-      <div class="video-block-inner">
-        <div class="video-side-label en">Lecture</div>
-        <div class="video-thumb-wrap">
-          <img src="academy-lecture-thumb.jpg" alt="Lecture video thumbnail">
-          <button type="button" class="video-play" data-video-src="" aria-label="เล่นวิดีโอ Lecture">
-            <span class="ring"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7L8 5Z"/></svg></span>
-          </button>
-        </div>
-      </div>
-      <div class="video-meta">
-        <p>By Dr. xxxxxxxxxxxxxxxxxxxxxxx</p>
-        <p>Date 11-11-11</p>
-      </div>
+<?php if (!$videos): ?>
+    <div class="course-empty">
+      <p>คอร์สนี้กำลังจะเปิดให้รับชมเร็วๆ นี้</p>
+      <a href="academy.php">ดูคอร์สอื่น</a>
     </div>
+<?php endif; ?>
 
-    <div class="video-block reverse">
+<?php foreach ($videos as $i => $v):
+    $reverse = $i % 2 === 1;
+    $embed = $v['src'] !== '' ? academy_embed($v['src']) : null;
+?>
+    <div class="video-block<?= $reverse ? ' reverse' : '' ?>">
       <div class="video-block-inner">
+<?php if (!$reverse): ?>
+        <div class="video-side-label en"><?= e($v['label']) ?></div>
+<?php endif; ?>
         <div class="video-thumb-wrap">
-          <img src="academy-demo-thumb.jpg" alt="Live demonstration video thumbnail">
-          <button type="button" class="video-play" data-video-src="" aria-label="เล่นวิดีโอ Live Demonstration">
+          <img src="<?= e($v['thumb']) ?>" alt="<?= e($v['label']) ?> video thumbnail">
+<?php if ($embed): ?>
+          <button type="button" class="video-play" data-video-type="<?= e($embed['type']) ?>" data-video-src="<?= e($embed['src']) ?>" aria-label="เล่นวิดีโอ <?= e($v['label']) ?>">
             <span class="ring"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7L8 5Z"/></svg></span>
           </button>
+<?php else: ?>
+          <div class="video-soon"><span>Coming Soon</span></div>
+<?php endif; ?>
         </div>
+<?php if ($reverse): ?>
         <div class="video-caption-label">
-          <span class="en">Live<br>Demonstration</span>
+          <span class="en"><?= implode('<br>', array_map('e', explode(' ', $v['label']))) ?></span>
         </div>
+<?php endif; ?>
       </div>
+<?php if ($v['speaker'] !== '' || $v['date'] !== ''): ?>
+      <div class="video-meta">
+<?php if ($v['speaker'] !== ''): ?>
+        <p>By <?= e($v['speaker']) ?></p>
+<?php endif; ?>
+<?php if ($v['date'] !== ''): ?>
+        <p>Date <?= e($v['date']) ?></p>
+<?php endif; ?>
+      </div>
+<?php endif; ?>
     </div>
+<?php endforeach; ?>
   </div>
 </section>
+
+<dialog class="video-modal" id="videoModal" aria-label="Video player">
+  <button type="button" class="video-modal-close" id="videoModalClose" aria-label="ปิดวิดีโอ">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <div class="video-modal-frame" id="videoModalFrame"></div>
+</dialog>
 </main>
 
 <script>
 (function(){
-  var params = new URLSearchParams(window.location.search);
-  var title = params.get("title");
-  if(title){ document.getElementById("courseTitle").textContent = title; document.title = title + " | Hyamax Academy"; }
+  var modal = document.getElementById("videoModal");
+  var frame = document.getElementById("videoModalFrame");
+
+  function closeVideo(){
+    frame.innerHTML = "";
+    if(modal.open){ modal.close(); }
+  }
 
   document.querySelectorAll(".video-play").forEach(function(btn){
     btn.addEventListener("click", function(){
       var src = btn.getAttribute("data-video-src");
-      if(src){
-        window.location.href = src;
+      var el;
+      if(btn.getAttribute("data-video-type") === "iframe"){
+        el = document.createElement("iframe");
+        el.allow = "autoplay; fullscreen; picture-in-picture; encrypted-media";
+        el.allowFullscreen = true;
       } else {
-        alert("วิดีโอนี้จะเปิดให้รับชมเร็วๆ นี้");
+        el = document.createElement("video");
+        el.controls = true;
+        el.autoplay = true;
+        el.playsInline = true;
+        el.setAttribute("controlsList", "nodownload");
       }
+      el.src = src;
+      el.title = btn.getAttribute("aria-label");
+      frame.innerHTML = "";
+      frame.appendChild(el);
+      modal.showModal();
     });
   });
+
+  document.getElementById("videoModalClose").addEventListener("click", closeVideo);
+  modal.addEventListener("close", function(){ frame.innerHTML = ""; });
+  modal.addEventListener("click", function(ev){ if(ev.target === modal){ closeVideo(); } });
 
   var toggle = document.getElementById("navToggle");
   var links = document.getElementById("navLinks");
