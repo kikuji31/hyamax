@@ -1,7 +1,7 @@
 <?php
-require __DIR__ . '/session.php';
-require __DIR__ . '/login-throttle.php';
-require __DIR__ . '/academy-users.php';
+require_once __DIR__ . '/session.php';
+require_once __DIR__ . '/login-throttle.php';
+require_once __DIR__ . '/academy-users.php';
 
 if (!empty($_SESSION['hyamax_academy_auth'])) {
     header('Location: academy.php');
@@ -18,34 +18,33 @@ function academy_verify(string $username, string $password): bool
     return $user !== null && hash_equals($user['hash'], $computed);
 }
 
-$error = false;
-$lockedMinutes = 0;
+$error = '';
 $submittedUser = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $submittedUser = is_string($_POST['username'] ?? null) ? trim($_POST['username']) : '';
+    $submittedUser = is_string($_POST['username'] ?? null) ? substr(trim($_POST['username']), 0, 100) : '';
     $password = is_string($_POST['password'] ?? null) ? $_POST['password'] : '';
 
-    $lockedSeconds = throttle_seconds_left();
-    if ($lockedSeconds > 0) {
-        $lockedMinutes = (int)ceil($lockedSeconds / 60);
+    if (!csrf_valid()) {
+        // ฟอร์มไม่ได้ส่งมาจากหน้านี้ของเราเอง (หรือเปิดค้างไว้จน session หมดอายุ)
+        $error = 'หน้านี้เปิดค้างไว้นานเกินไป กรุณาลองเข้าสู่ระบบอีกครั้ง';
+    } elseif (($left = throttle_seconds_left($submittedUser)) > 0) {
+        $error = 'ใส่รหัสผิดหลายครั้งเกินไป กรุณาลองใหม่ในอีก ' . (int)ceil($left / 60) . ' นาที';
+    } elseif (strlen($password) <= 1024 && academy_verify($submittedUser, $password)) {
+        throttle_reset($submittedUser);
+        session_regenerate_id(true);
+        unset($_SESSION['csrf']);
+        $_SESSION['hyamax_academy_auth'] = true;
+        $_SESSION['hyamax_academy_user'] = $submittedUser;
+        $_SESSION['created'] = time();
+        header('Location: academy.php');
+        exit;
     } else {
-        if (academy_verify($submittedUser, $password)) {
-            throttle_reset();
-            session_regenerate_id(true);
-            $_SESSION['hyamax_academy_auth'] = true;
-            $_SESSION['hyamax_academy_user'] = $submittedUser;
-            header('Location: academy.php');
-            exit;
-        }
-
-        throttle_record_failure();
-        $lockedSeconds = throttle_seconds_left();
-        if ($lockedSeconds > 0) {
-            $lockedMinutes = (int)ceil($lockedSeconds / 60);
-        } else {
-            $error = true;
-        }
+        throttle_record_failure($submittedUser);
+        $left = throttle_seconds_left($submittedUser);
+        $error = $left > 0
+            ? 'ใส่รหัสผิดหลายครั้งเกินไป กรุณาลองใหม่ในอีก ' . (int)ceil($left / 60) . ' นาที'
+            : 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง';
     }
 }
 ?>
@@ -57,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet" href="fonts.css">
 <link rel="stylesheet" href="site-base.css">
-<style>
+<style nonce="<?= $cspNonce ?>">
 .login-hero{padding-bottom:clamp(64px,10vw,100px);}
 .login-hero-inner{align-items:center;}
 .login-hero .hero-portrait{
@@ -102,6 +101,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   padding:14px 24px;font-weight:700;letter-spacing:.04em;
 }
 .login-submit:hover{background:var(--accent-warm);transform:none;}
+.login-submit:disabled{opacity:.7;cursor:progress;}
+
+.login-head{display:flex;align-items:flex-start;gap:14px;text-align:left;padding-bottom:16px;border-bottom:1px solid var(--line-strong);}
+.login-head-icon{
+  flex:none;width:42px;height:42px;border-radius:12px;background:var(--accent-soft);color:var(--accent);
+  display:flex;align-items:center;justify-content:center;
+}
+.login-head-icon svg{width:22px;height:22px;}
+.login-head h2{font-family:var(--thai);font-weight:700;font-size:1.08rem;color:var(--ink);margin:0;line-height:1.35;}
+.login-head p{font-family:var(--thai);font-size:.84rem;color:var(--ink-soft);margin:4px 0 0;line-height:1.5;}
+
+.login-pass{position:relative;display:flex;margin-top:-10px;}
+.login-pass input{flex:1;padding-right:52px;}
+.login-pass-toggle{
+  position:absolute;top:50%;right:6px;transform:translateY(-50%);
+  width:40px;height:40px;border:none;background:none;border-radius:8px;cursor:pointer;
+  color:var(--ink-soft);display:flex;align-items:center;justify-content:center;
+}
+.login-pass-toggle:hover,.login-pass-toggle:focus-visible{color:var(--accent);background:var(--accent-soft);}
+.login-pass-toggle svg{width:20px;height:20px;}
+.login-pass-toggle .eye-off{display:none;}
+.login-pass-toggle[aria-pressed="true"] .eye{display:none;}
+.login-pass-toggle[aria-pressed="true"] .eye-off{display:block;}
+.login-caps{margin:-8px 0 0;font-family:var(--thai);font-size:.8rem;color:#B9770E;text-align:left;}
+
+.login-error{
+  display:flex;gap:8px;align-items:flex-start;padding:10px 12px;border-radius:10px;
+  background:#FDEDEC;border:1px solid #F5B7B1;line-height:1.5;
+}
+.login-error svg{flex:none;width:16px;height:16px;margin-top:2px;}
+
+.login-trust{
+  display:flex;flex-direction:column;gap:8px;padding-top:14px;border-top:1px solid var(--line-strong);
+  font-family:var(--thai);font-size:.8rem;color:var(--ink-soft);text-align:left;
+}
+.login-trust-row{display:flex;align-items:center;gap:8px;}
+.login-trust-row svg{flex:none;width:15px;height:15px;color:#1E8449;}
+.login-trust a{color:var(--accent);font-weight:600;text-decoration:none;}
+.login-trust a:hover{text-decoration:underline;}
 @media (max-width:820px){
   .login-card-wrap{margin-top:16px;justify-content:center;}
 }
@@ -148,33 +186,98 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <p class="hero-tagline">&ldquo;Swiss Hyaluronic Acid Filler&rdquo;</p>
 
       <div class="login-card-wrap">
-        <form class="login-card" id="loginForm" method="post" action="login.php" novalidate>
+        <form class="login-card" id="loginForm" method="post" action="login.php">
+          <?= csrf_field() ?>
+          <div class="login-head">
+            <span class="login-head-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.4 9.3-8 11-4.6-1.7-8-6-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
+            </span>
+            <div>
+              <h2>เข้าสู่ระบบ Hyamax Academy</h2>
+              <p>สำหรับแพทย์และบุคลากรทางการแพทย์ที่ได้รับบัญชีจาก HYAMAX เท่านั้น</p>
+            </div>
+          </div>
           <label class="login-field">
             <span>User name</span>
-            <input type="text" name="username" autocomplete="username" value="<?= htmlspecialchars($submittedUser) ?>" required>
+            <input type="text" name="username" autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="100" value="<?= htmlspecialchars($submittedUser, ENT_QUOTES, 'UTF-8') ?>" required>
           </label>
-          <label class="login-field">
+          <label class="login-field" for="loginPassword">
             <span>Password</span>
-            <input type="password" name="password" autocomplete="current-password" required>
           </label>
-<?php if ($lockedMinutes > 0): ?>
-          <p class="login-error" id="loginError" role="alert">ใส่รหัสผิดหลายครั้งเกินไป กรุณาลองใหม่ในอีก <?= $lockedMinutes ?> นาที</p>
-<?php else: ?>
-          <p class="login-error" id="loginError"<?= $error ? ' role="alert"' : ' hidden' ?>>ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง</p>
+          <div class="login-pass">
+            <input type="password" id="loginPassword" name="password" autocomplete="current-password" maxlength="1024" required>
+            <button type="button" class="login-pass-toggle" id="passToggle" aria-label="แสดงรหัสผ่าน" aria-pressed="false" aria-controls="loginPassword">
+              <svg class="eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
+              <svg class="eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.9 17.9A10.4 10.4 0 0112 19c-7 0-11-7-11-7a19 19 0 015.1-5.9M9.9 4.2A9.6 9.6 0 0112 4c7 0 11 7 11 7a19 19 0 01-2.2 3.2M1 1l22 22"/><path d="M14.1 14.1a3 3 0 01-4.2-4.2"/></svg>
+            </button>
+          </div>
+          <p class="login-caps" id="capsWarning" hidden>Caps Lock เปิดอยู่</p>
+<?php if ($error !== ''): ?>
+          <p class="login-error" id="loginError" role="alert">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 7v6M12 17h.01"/></svg>
+            <span><?= htmlspecialchars($error, ENT_QUOTES, 'UTF-8') ?></span>
+          </p>
 <?php endif; ?>
-          <button type="submit" class="btn login-submit">LOGIN</button>
+          <button type="submit" class="btn login-submit" id="loginSubmit">LOGIN</button>
+          <div class="login-trust">
+<?php if ($isHttps): ?>
+            <div class="login-trust-row">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg>
+              <span>เชื่อมต่อแบบเข้ารหัส (HTTPS) ข้อมูลของคุณถูกส่งอย่างปลอดภัย</span>
+            </div>
+<?php endif; ?>
+            <div class="login-trust-row">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 3v6c0 5-3.4 9.3-8 11-4.6-1.7-8-6-8-11V5l8-3z"/></svg>
+              <span>ใส่รหัสผิด 5 ครั้ง ระบบจะล็อกชั่วคราว 15 นาทีเพื่อป้องกันการเดารหัส</span>
+            </div>
+            <div class="login-trust-row">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 015.8 1c0 2-3 3-3 3M12 17h.01"/></svg>
+              <span>ลืมรหัสผ่านหรือยังไม่มีบัญชี? <a href="index.html#contact">ติดต่อทีม HYAMAX ทาง LINE</a></span>
+            </div>
+          </div>
         </form>
       </div>
     </div>
   </div>
   <div class="hero-portrait">
-    <img src="HYAMAX-white-web.png" alt="Hyamax model" onerror="this.style.display='none'">
+    <img src="HYAMAX-white-web.png" alt="Hyamax model">
   </div>
 </section>
 </main>
 
-<script>
+<script nonce="<?= $cspNonce ?>">
 (function(){
+  var pass = document.getElementById("loginPassword");
+  var passToggle = document.getElementById("passToggle");
+  var caps = document.getElementById("capsWarning");
+  var form = document.getElementById("loginForm");
+  var submit = document.getElementById("loginSubmit");
+
+  passToggle.addEventListener("click", function(){
+    var show = pass.type === "password";
+    pass.type = show ? "text" : "password";
+    passToggle.setAttribute("aria-pressed", show ? "true" : "false");
+    passToggle.setAttribute("aria-label", show ? "ซ่อนรหัสผ่าน" : "แสดงรหัสผ่าน");
+    pass.focus();
+  });
+
+  function checkCaps(ev){
+    if(ev.getModifierState){ caps.hidden = !ev.getModifierState("CapsLock"); }
+  }
+  pass.addEventListener("keydown", checkCaps);
+  pass.addEventListener("keyup", checkCaps);
+  pass.addEventListener("blur", function(){ caps.hidden = true; });
+
+  form.addEventListener("submit", function(){
+    pass.type = "password";
+    submit.disabled = true;
+    submit.textContent = "กำลังตรวจสอบ...";
+  });
+  window.addEventListener("pageshow", function(){
+    submit.disabled = false;
+    submit.textContent = "LOGIN";
+  });
+
   var toggle = document.getElementById("navToggle");
   var links = document.getElementById("navLinks");
   if(toggle && links){

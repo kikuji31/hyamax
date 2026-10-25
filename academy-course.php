@@ -1,6 +1,6 @@
 <?php
-require __DIR__ . '/auth-check.php';
-require __DIR__ . '/academy-courses.php';
+require_once __DIR__ . '/auth-check.php';
+require_once __DIR__ . '/academy-courses.php';
 
 $slug = $_GET['course'] ?? '';
 if (!is_string($slug) || !array_key_exists($slug, ACADEMY_COURSES)) {
@@ -20,7 +20,8 @@ function e($s) { return htmlspecialchars($s, ENT_QUOTES, 'UTF-8'); }
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet" href="fonts.css">
 <link rel="stylesheet" href="site-base.css">
-<style>
+<style nonce="<?= $cspNonce ?>">
+.logout-form{display:contents;}
 .course-band{background:var(--accent);color:#FFFFFF;padding:clamp(96px,13vw,140px) 0 clamp(64px,9vw,96px);}
 .course-wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,5vw,56px);}
 .course-topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:clamp(28px,4vw,40px);}
@@ -149,7 +150,7 @@ function e($s) { return htmlspecialchars($s, ENT_QUOTES, 'UTF-8'); }
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
         Back to Academy
       </a>
-      <a class="academy-logout" href="logout.php">Logout</a>
+      <form class="logout-form" method="post" action="logout.php"><?= csrf_field() ?><button type="submit" class="academy-logout">Logout</button></form>
     </div>
 
     <h1 class="course-title en"><?= e($course['title']) ?></h1>
@@ -209,7 +210,7 @@ function e($s) { return htmlspecialchars($s, ENT_QUOTES, 'UTF-8'); }
 </dialog>
 </main>
 
-<script>
+<script nonce="<?= $cspNonce ?>">
 (function(){
   var modal = document.getElementById("videoModal");
   var frame = document.getElementById("videoModalFrame");

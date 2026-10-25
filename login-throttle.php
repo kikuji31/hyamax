@@ -1,57 +1,71 @@
 <?php
-// จำกัดการเดารหัสผ่านต่อ IP: ผิดครบ LOGIN_MAX_FAILS ครั้งภายใน LOGIN_WINDOW วินาที -> ล็อก LOGIN_LOCKOUT วินาที
-// เก็บเป็นไฟล์เล็กๆ ในโฟลเดอร์ temp ของเซิร์ฟเวอร์ (เว็บนี้ไม่มีฐานข้อมูล)
+// จำกัดการเดารหัสผ่าน 2 ชั้น (เก็บเป็นไฟล์เล็กๆ ในโฟลเดอร์ temp ของเซิร์ฟเวอร์ — เว็บนี้ไม่มีฐานข้อมูล)
+//   ต่อ IP:      ผิด 5 ครั้งใน 15 นาที  -> ล็อก IP นั้น 15 นาที
+//   ต่อบัญชี:    ผิด 10 ครั้งใน 15 นาที -> ล็อกบัญชีนั้น 15 นาที (กันการเดาจากหลาย IP พร้อมกัน)
+require_once __DIR__ . '/security.php';
+deny_direct_access(__FILE__);
 
-const LOGIN_MAX_FAILS = 5;
-const LOGIN_WINDOW    = 15 * 60;
-const LOGIN_LOCKOUT   = 15 * 60;
+const LOGIN_WINDOW   = 15 * 60;
+const LOGIN_LOCKOUT  = 15 * 60;
+const LOGIN_MAX_IP   = 5;
+const LOGIN_MAX_USER = 10;
 
-function throttle_file(): string
+/** คีย์ที่ใช้นับสำหรับการ login ครั้งนี้: [คีย์ => จำนวนครั้งที่ยอมให้ผิด] */
+function throttle_keys(string $username): array
+{
+    return [
+        'ip:' . ($_SERVER['REMOTE_ADDR'] ?? 'unknown') => LOGIN_MAX_IP,
+        'user:' . strtolower($username)                 => LOGIN_MAX_USER,
+    ];
+}
+
+function throttle_file(string $key): string
 {
     $dir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'hyamax-login';
     if (!is_dir($dir)) {
         @mkdir($dir, 0700, true);
     }
-    $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
-    return $dir . DIRECTORY_SEPARATOR . hash('sha256', $ip) . '.json';
+    return $dir . DIRECTORY_SEPARATOR . hash('sha256', $key) . '.json';
 }
 
-function throttle_read(): array
+function throttle_read(string $key): array
 {
-    $raw = @file_get_contents(throttle_file());
+    $raw = @file_get_contents(throttle_file($key));
     $data = $raw ? json_decode($raw, true) : null;
     return is_array($data) ? $data : ['fails' => [], 'locked_until' => 0];
 }
 
-function throttle_write(array $data): void
-{
-    @file_put_contents(throttle_file(), json_encode($data), LOCK_EX);
-}
-
 /** วินาทีที่ยังถูกล็อกอยู่ (0 = login ได้) */
-function throttle_seconds_left(): int
+function throttle_seconds_left(string $username): int
 {
-    $left = (int)(throttle_read()['locked_until'] ?? 0) - time();
-    return max(0, $left);
+    $left = 0;
+    foreach (array_keys(throttle_keys($username)) as $key) {
+        $left = max($left, (int)(throttle_read($key)['locked_until'] ?? 0) - time());
+    }
+    return $left;
 }
 
-function throttle_record_failure(): void
+function throttle_record_failure(string $username): void
 {
     $now = time();
-    $data = throttle_read();
-    $data['fails'] = array_values(array_filter(
-        $data['fails'] ?? [],
-        function ($t) use ($now) { return $t > $now - LOGIN_WINDOW; }
-    ));
-    $data['fails'][] = $now;
-    if (count($data['fails']) >= LOGIN_MAX_FAILS) {
-        $data['locked_until'] = $now + LOGIN_LOCKOUT;
-        $data['fails'] = [];
+    foreach (throttle_keys($username) as $key => $max) {
+        $data = throttle_read($key);
+        $data['fails'] = array_values(array_filter(
+            $data['fails'] ?? [],
+            function ($t) use ($now) { return $t > $now - LOGIN_WINDOW; }
+        ));
+        $data['fails'][] = $now;
+        if (count($data['fails']) >= $max) {
+            $data['locked_until'] = $now + LOGIN_LOCKOUT;
+            $data['fails'] = [];
+        }
+        @file_put_contents(throttle_file($key), json_encode($data), LOCK_EX);
     }
-    throttle_write($data);
 }
 
-function throttle_reset(): void
+function throttle_reset(string $username): void
 {
-    @unlink(throttle_file());
+    foreach (array_keys(throttle_keys($username)) as $key) {
+        @unlink(throttle_file($key));
+    }
 }

@@ -1,6 +1,6 @@
 <?php
-require __DIR__ . '/auth-check.php';
-require __DIR__ . '/academy-courses.php';
+require_once __DIR__ . '/auth-check.php';
+require_once __DIR__ . '/academy-courses.php';
 ?>
 <!doctype html>
 <html lang="th">
@@ -10,7 +10,8 @@ require __DIR__ . '/academy-courses.php';
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet" href="fonts.css">
 <link rel="stylesheet" href="site-base.css">
-<style>
+<style nonce="<?= $cspNonce ?>">
+.logout-form{display:contents;}
 .academy-hero{background:var(--accent);color:#FFFFFF;padding:clamp(96px,14vw,150px) 0 clamp(40px,6vw,56px);}
 .academy-hero-inner{max-width:1180px;margin:0 auto;padding:0 clamp(20px,5vw,56px);}
 .academy-title{
@@ -71,10 +72,10 @@ require __DIR__ . '/academy-courses.php';
       <a href="index.html#product-line">Product</a>
       <a href="index.html#clinics">Find a Clinic</a>
       <a href="index.html#event">EVENT</a>
-      <a class="btn btn-primary" href="logout.php">Logout</a>
+      <form class="logout-form" method="post" action="logout.php"><?= csrf_field() ?><button type="submit" class="btn btn-primary">Logout</button></form>
     </nav>
     <div class="nav-cta">
-      <a class="btn btn-primary" href="logout.php">Logout</a>
+      <form class="logout-form" method="post" action="logout.php"><?= csrf_field() ?><button type="submit" class="btn btn-primary">Logout</button></form>
       <button class="nav-toggle" id="navToggle" aria-label="เปิดเมนู" aria-expanded="false" aria-controls="navLinks">
         <span></span><span></span><span></span>
       </button>
@@ -109,7 +110,7 @@ require __DIR__ . '/academy-courses.php';
 </section>
 </main>
 
-<script>
+<script nonce="<?= $cspNonce ?>">
 (function(){
   var toggle = document.getElementById("navToggle");
   var links = document.getElementById("navLinks");

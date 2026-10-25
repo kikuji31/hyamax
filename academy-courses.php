@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/security.php';
+deny_direct_access(__FILE__);
 /*
  * ข้อมูลคอร์สทั้งหมดของ Hyamax Academy — แก้เนื้อหาที่ไฟล์นี้ไฟล์เดียว
  *
